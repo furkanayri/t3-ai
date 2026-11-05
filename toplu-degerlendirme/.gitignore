@@ -1,0 +1,50 @@
+# Environment variables
+.env
+.env.local
+
+# Node modules
+node_modules/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual environments
+venv/
+ENV/
+env/
+
+# Docker volumes
+videos/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+logs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Test files
+test_message.json
+test_single_video.py
+test_mongodb_write.py
+
+# Model cache
+.cache/
+models/
+
+# Local comparison runs (manifests contain absolute local paths)
+.local-runs/
+
+

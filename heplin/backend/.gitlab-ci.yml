@@ -1,0 +1,232 @@
+stages:
+  - build
+  - deploy
+
+variables:
+  ECR_REGISTRY: public.ecr.aws/i4m6k0u4
+  IMAGE_NAME: heplin/backend
+  AWS_DEFAULT_REGION: us-east-1
+
+# Master branch deployment (Global Latest)
+deploy_master:
+  variables:
+    SECURE_FILES_DOWNLOAD_PATH: "./"
+  stage: deploy
+  script:
+    # Versioning
+    - LATEST_TAG=$(git describe --tags --abbrev=0 --match "v[0-9]*" 2>/dev/null || echo "v0.0.0")
+    - VERSION=${LATEST_TAG#v}
+    - IFS='.' read -ra VERSION_PARTS <<< "$VERSION"
+    - MAJOR=${VERSION_PARTS[0]:-1}
+    - MINOR=${VERSION_PARTS[1]:-0}
+    - PATCH=${VERSION_PARTS[2]:-0}
+    - PATCH=$((PATCH + 1))
+    - export VERSION="${MAJOR}.${MINOR}.${PATCH}"
+    - echo "🏷️ Master branch - Version${VERSION}"
+    
+    # Setup
+    - echo "🚀 Starting MASTER deployment (Global Latest)"
+    - curl --silent "https://gitlab.com/gitlab-org/incubation-engineering/mobile-devops/download-secure-files/-/raw/main/installer" | bash
+    - npm install
+    - npm run build
+    
+    # AWS ECR Login
+    - echo "🔐 Logging into AWS ECR Public..."
+    - aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/i4m6k0u4
+    
+    # Docker Build and Tag
+    - echo "🐳 Building Docker image..."
+    - docker build -t ${IMAGE_NAME}:${VERSION} .
+    - docker tag ${IMAGE_NAME}:${VERSION} ${ECR_REGISTRY}/${IMAGE_NAME}:${VERSION}
+    - docker tag ${IMAGE_NAME}:${VERSION} ${ECR_REGISTRY}/${IMAGE_NAME}:latest
+    
+    # Push to ECR
+    - echo "⬆️ Pushing to AWS ECR Public..."
+    - docker push ${ECR_REGISTRY}/${IMAGE_NAME}:${VERSION}
+    - docker push ${ECR_REGISTRY}/${IMAGE_NAME}:latest
+    
+    # Git Tag
+    - git config user.email "ci@heplin.com"
+    - git config user.name "GitLab CI"
+    - git tag -a "v${VERSION}" -m "Release version ${VERSION}" || echo "Tag exists"
+    - git push origin "v${VERSION}" || echo "Tag push skipped"
+    
+    # Telegram Notification
+    - MESSAGE="✅ MASTER Deployment Başarılı!\n\n📦 Versiyon${VERSION}\n🏷️ Tags${VERSION}, latest\n🌍 Deployment Global Production\n🌿 Branch${CI_COMMIT_BRANCH}\n👤 ${GITLAB_USER_NAME}\n\n📝 ${CI_COMMIT_MESSAGE}\n\n🔗 ${CI_PIPELINE_URL}\n\n🐳 Images:\n${ECR_REGISTRY}/${IMAGE_NAME}:${VERSION}\n${ECR_REGISTRY}/${IMAGE_NAME}:latest"
+    - ENCODED_MESSAGE=$(echo "$MESSAGE" | jq -sRr @uri)
+    - curl -s -X POST "https://api.telegram.org/bot7168519204:AAGWfT76Jr6HnJkkUywfWmXo4gpAYrW3FNY/sendMessage" -d chat_id="$TELEGRAM_CHAT_ID" -d text="$ENCODED_MESSAGE"
+    - echo "✅ Deployment completed!"
+  artifacts:
+    expire_in: 7 days
+    paths:
+      - dist/
+  only:
+    - master
+    - main
+
+# Develop branch deployment
+deploy_develop:
+  variables:
+    SECURE_FILES_DOWNLOAD_PATH: "./"
+  stage: deploy
+  script:
+    # Versioning
+    - export VERSION="develop-${CI_PIPELINE_IID}"
+    - echo "🚀 DEVELOP deployment - Version${VERSION}"
+    
+    # Setup
+    - curl --silent "https://gitlab.com/gitlab-org/incubation-engineering/mobile-devops/download-secure-files/-/raw/main/installer" | bash
+    - npm install
+    - npm run build
+    
+    # AWS ECR Login
+    - aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/i4m6k0u4
+    
+    # Docker Build and Tag
+    - docker build -t ${IMAGE_NAME}:${VERSION} .
+    - docker tag ${IMAGE_NAME}:${VERSION} ${ECR_REGISTRY}/${IMAGE_NAME}:${VERSION}
+    - docker tag ${IMAGE_NAME}:${VERSION} ${ECR_REGISTRY}/${IMAGE_NAME}:develop
+    
+    # Push to ECR
+    - docker push ${ECR_REGISTRY}/${IMAGE_NAME}:${VERSION}
+    - docker push ${ECR_REGISTRY}/${IMAGE_NAME}:develop
+    
+    # Telegram
+    - MESSAGE="⚡ DEVELOP Deployment Başarılı!\n\n📦 ${VERSION}\n🏷️ ${VERSION}, develop\n🌿 ${CI_COMMIT_BRANCH}\n👤 ${GITLAB_USER_NAME}\n\n📝 ${CI_COMMIT_MESSAGE}\n\n🐳 ${ECR_REGISTRY}/${IMAGE_NAME}:develop"
+    - ENCODED_MESSAGE=$(echo "$MESSAGE" | jq -sRr @uri)
+    - curl -s -X POST "https://api.telegram.org/bot7168519204:AAGWfT76Jr6HnJkkUywfWmXo4gpAYrW3FNY/sendMessage" -d chat_id="$TELEGRAM_CHAT_ID" -d text="$ENCODED_MESSAGE"
+  artifacts:
+    expire_in: 3 days
+    paths:
+      - dist/
+  only:
+    - develop
+
+# Customer deployment
+deploy_customer:
+  variables:
+    SECURE_FILES_DOWNLOAD_PATH: "./"
+  stage: deploy
+  script:
+    # Extract customer name
+    - CUSTOMER_NAME=$(echo $CI_COMMIT_BRANCH | sed 's|^customer/||' | sed 's|^client/||')
+    - CUSTOMER_PREFIX="${CUSTOMER_NAME}"
+    - echo "👥 Customer${CUSTOMER_NAME}"
+    
+    # Versioning
+    - LATEST_TAG=$(git describe --tags --match "${CUSTOMER_PREFIX}-v*" --abbrev=0 2>/dev/null || echo "${CUSTOMER_PREFIX}-v0.0.0")
+    - VERSION=${LATEST_TAG#${CUSTOMER_PREFIX}-v}
+    - IFS='.' read -ra VERSION_PARTS <<< "$VERSION"
+    - MAJOR=${VERSION_PARTS[0]:-1}
+    - MINOR=${VERSION_PARTS[1]:-0}
+    - PATCH=${VERSION_PARTS[2]:-0}
+    - PATCH=$((PATCH + 1))
+    - export VERSION="${MAJOR}.${MINOR}.${PATCH}"
+    - export DOCKER_TAG="${CUSTOMER_PREFIX}-${VERSION}"
+    - export LATEST_TAG="${CUSTOMER_PREFIX}-latest"
+    - export GIT_TAG="${CUSTOMER_PREFIX}-v${VERSION}"
+    - echo "📦 Version${VERSION}, Tags${DOCKER_TAG}, ${LATEST_TAG}"
+    
+    # Setup
+    - curl --silent "https://gitlab.com/gitlab-org/incubation-engineering/mobile-devops/download-secure-files/-/raw/main/installer" | bash
+    - npm install
+    - npm run build
+    
+    # AWS ECR Login
+    - echo "🔐 Logging into AWS ECR Public..."
+    - aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/i4m6k0u4
+    
+    # Docker Build and Tag
+    - echo "🐳 Building for ${CUSTOMER_NAME}..."
+    - docker build -t ${IMAGE_NAME}:${DOCKER_TAG} .
+    - docker tag ${IMAGE_NAME}:${DOCKER_TAG} ${ECR_REGISTRY}/${IMAGE_NAME}:${DOCKER_TAG}
+    - docker tag ${IMAGE_NAME}:${DOCKER_TAG} ${ECR_REGISTRY}/${IMAGE_NAME}:${LATEST_TAG}
+    
+    # Push to ECR
+    - echo "⬆️ Pushing to AWS ECR Public..."
+    - docker push ${ECR_REGISTRY}/${IMAGE_NAME}:${DOCKER_TAG}
+    - docker push ${ECR_REGISTRY}/${IMAGE_NAME}:${LATEST_TAG}
+    
+    # Git Tag
+    - git config user.email "ci@heplin.com"
+    - git config user.name "GitLab CI"
+    - git tag -a "${GIT_TAG}" -m "Customer ${CUSTOMER_NAME} v${VERSION}" || echo "Tag exists"
+    - git push origin "${GIT_TAG}" || echo "Tag push skipped"
+    
+    # Telegram
+    - MESSAGE="👥 CUSTOMER Deployment!\n\n🏢 ${CUSTOMER_NAME}\n📦 ${VERSION}\n🏷️ ${DOCKER_TAG}, ${LATEST_TAG}\n🌿 ${CI_COMMIT_BRANCH}\n👤 ${GITLAB_USER_NAME}\n\n📝 ${CI_COMMIT_MESSAGE}\n\n🐳 ${ECR_REGISTRY}/${IMAGE_NAME}:${LATEST_TAG}\n\nℹ️ ${CUSTOMER_NAME} firması için özelleştirilmiştir"
+    - ENCODED_MESSAGE=$(echo "$MESSAGE" | jq -sRr @uri)
+    - curl -s -X POST "https://api.telegram.org/bot7168519204:AAGWfT76Jr6HnJkkUywfWmXo4gpAYrW3FNY/sendMessage" -d chat_id="$TELEGRAM_CHAT_ID" -d text="$ENCODED_MESSAGE"
+    - echo "✅ Customer ${CUSTOMER_NAME} deployed!"
+  artifacts:
+    expire_in: 7 days
+    paths:
+      - dist/
+  only:
+    - /^customer\/.*/
+    - /^client\/.*/
+
+# Feature deployment
+deploy_feature:
+  variables:
+    SECURE_FILES_DOWNLOAD_PATH: "./"
+  stage: deploy
+  script:
+    # Versioning
+    - BRANCH_NAME=$(echo $CI_COMMIT_BRANCH | sed 's/\//-/g' | tr '[:upper:]' '[:lower:]')
+    - export VERSION="${BRANCH_NAME}-${CI_PIPELINE_IID}"
+    - export DOCKER_TAG="${BRANCH_NAME}"
+    - echo "🔧 Feature ${VERSION}"
+    
+    # Setup
+    - curl --silent "https://gitlab.com/gitlab-org/incubation-engineering/mobile-devops/download-secure-files/-/raw/main/installer" | bash
+    - npm install
+    - npm run build
+    
+    # AWS ECR Login
+    - aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/i4m6k0u4
+    
+    # Docker Build and Tag
+    - docker build -t ${IMAGE_NAME}:${VERSION} .
+    - docker tag ${IMAGE_NAME}:${VERSION} ${ECR_REGISTRY}/${IMAGE_NAME}:${VERSION}
+    - docker tag ${IMAGE_NAME}:${VERSION} ${ECR_REGISTRY}/${IMAGE_NAME}:${DOCKER_TAG}
+    
+    # Push to ECR
+    - docker push ${ECR_REGISTRY}/${IMAGE_NAME}:${VERSION}
+    - docker push ${ECR_REGISTRY}/${IMAGE_NAME}:${DOCKER_TAG}
+    
+    # Telegram
+    - MESSAGE="🔧 FEATURE Build!\n\n📦 ${VERSION}\n🏷️ ${DOCKER_TAG}\n🌿 ${CI_COMMIT_BRANCH}\n👤 ${GITLAB_USER_NAME}\n\n📝 ${CI_COMMIT_MESSAGE}\n\n🐳 ${ECR_REGISTRY}/${IMAGE_NAME}:${DOCKER_TAG}"
+    - ENCODED_MESSAGE=$(echo "$MESSAGE" | jq -sRr @uri)
+    - curl -s -X POST "https://api.telegram.org/bot7168519204:AAGWfT76Jr6HnJkkUywfWmXo4gpAYrW3FNY/sendMessage" -d chat_id="$TELEGRAM_CHAT_ID" -d text="$ENCODED_MESSAGE"
+  artifacts:
+    expire_in: 1 day
+    paths:
+      - dist/
+  only:
+    - /^feature\/.*/
+    - /^bugfix\/.*/
+    - /^hotfix\/.*/
+  when: manual
+
+# Build test
+test_build:
+  stage: build
+  script:
+    - echo "🧪 Testing build..."
+    - npm install
+    - npm run build
+    - echo "✅ Build test passed!"
+  artifacts:
+    expire_in: 1 hour
+    paths:
+      - dist/
+  except:
+    - master
+    - main
+    - develop
+    - /^customer\/.*/
+    - /^client\/.*/
+    - /^feature\/.*/
+    - /^bugfix\/.*/
+    - /^hotfix\/.*/

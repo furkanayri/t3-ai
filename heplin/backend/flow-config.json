@@ -1,0 +1,5669 @@
+[
+  {
+    "name": "skills",
+    "endpoints": [
+      {
+        "method": "GET",
+        "name": "/api/v1/skills",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "skills/getAllSkills"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/skills",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkUserPermission",
+            "options": {
+              "scopes": [
+                "manage_skills"
+              ],
+              "resource": {
+                "tenantId": "*"
+              }
+            }
+          },
+          {
+            "name": "skills/createSkill"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/skills/:skillId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "skills/getSkill"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "dashboard",
+    "endpoints": [
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/metrics",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "shared/checkUserPermission",
+            "options": {
+              "scopes": [
+                "get_metrics"
+              ],
+              "resource": {
+                "tenantId": true
+              }
+            }
+          },
+          {
+            "name": "dashboard/fetchMetrics"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "emails",
+    "endpoints": [
+      {
+        "method": "POST",
+        "name": "/api/v1/tenants/:tenantId/emails/template",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "shared/checkUserPermission",
+            "options": {
+              "scopes": [
+                "send_emails"
+              ],
+              "resource": {
+                "tenantId": true
+              }
+            }
+          },
+          {
+            "name": "emails/sendTemplatedEmailAfterStep"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "jobs",
+    "endpoints": [
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/jobs",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "shared/checkUserPermission",
+            "options": {
+              "scopes": [
+                "manage_jobs"
+              ],
+              "resource": {
+                "tenantId": true
+              }
+            }
+          },
+          {
+            "name": "jobs/getAllJobsOfTenant"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/archiveJob",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "jobs/getArchiveJobsOfTenant"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/tenants/:tenantId/jobs",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "shared/checkUserPermission",
+            "options": {
+              "scopes": [
+                "manage_jobs"
+              ],
+              "resource": {
+                "tenantId": true
+              }
+            }
+          },
+          {
+            "name": "quotas/checkQuota",
+            "options": {
+              "target": "job"
+            }
+          },
+          {
+            "name": "jobs/createJob"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/tenants/:tenantId/archiveJob",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "jobs/createArchiveJob"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/tenants/:tenantId/bulkCVUpload",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "jobs/bulkCVUpload"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/tenants/:tenantId/jobs/createAiContent",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "shared/checkUserPermission",
+            "options": {
+              "scopes": [
+                "manage_jobs"
+              ],
+              "resource": {
+                "tenantId": true
+              }
+            }
+          },
+          {
+            "name": "jobs/generateJobDescription"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/jobs/:jobId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "shared/checkUserPermission",
+            "options": {
+              "scopes": [
+                "manage_jobs"
+              ],
+              "resource": {
+                "tenantId": true
+              }
+            }
+          },
+          {
+            "name": "jobs/getJobOfTenant"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/archiveJobs/:jobId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "jobs/getArchiveJobOfTenant"
+          }
+        ]
+      },
+      {
+        "method": "PATCH",
+        "name": "/api/v1/tenants/:tenantId/jobs/:jobId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "shared/checkUserPermission",
+            "options": {
+              "scopes": [
+                "manage_jobs"
+              ],
+              "resource": {
+                "tenantId": true
+              }
+            }
+          },
+          {
+            "name": "jobs/updateJob"
+          }
+        ]
+      },
+      {
+        "method": "PATCH",
+        "name": "/api/v1/tenants/:tenantId/jobs/:jobId/update-employee",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "shared/checkUserPermission",
+            "options": {
+              "scopes": [
+                "manage_jobs"
+              ],
+              "resource": {
+                "tenantId": true
+              }
+            }
+          },
+          {
+            "name": "jobs/updateJobApplicationEmployee"
+          }
+        ]
+      },
+      {
+        "method": "PATCH",
+        "name": "/api/v1/tenants/:tenantId/jobs/:jobId/viewedBy/:id",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "jobs/updateJobApplicationIsReview"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/tenants/:tenantId/jobs/:jobId/tooglePublish",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "shared/checkUserPermission",
+            "options": {
+              "scopes": [
+                "manage_jobs"
+              ],
+              "resource": {
+                "tenantId": true
+              }
+            }
+          },
+          {
+            "name": "jobs/togglePublish"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/jobsByDomain/:domain",
+        "nodes": [
+          {
+            "name": "jobs/jobsByDomain"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/jobs/:jobId",
+        "nodes": [
+          {
+            "name": "jobs/getOneJobById"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/channels/:channelId/jobs",
+        "nodes": [
+          {
+            "name": "jobs/getJobsOfChannel"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/jobs/:jobId/applicants",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "jobs/applicants"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/archiveJobs/:jobId/applicants",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "jobs/archiveJobApplicants"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/jobs/:jobId/hiringTeams",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "jobs/hiringTeams"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/tenants/:tenantId/jobs/:jobId/applicants/:applicantId/move",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "jobs/moveCandidateStep"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/candidate/jobs/:jobId/view",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "jobs/increaseView"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/tenants/:tenantId/jobs/:jobId/application/disqualify",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "jobs/disqualifyOneApplication"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/tenants/:tenantId/jobs/:jobId/applications/disqualify/bulk",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "jobs/disqualifyApplicationsInStep"
+          }
+        ]
+      },
+      {
+        "method": "DELETE",
+        "name": "/api/v1/tenants/:tenantId/jobs/:jobId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "jobs/deleteJob"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/tenants/:tenantId/jobs/aiEvaluation",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "jobs/aiEvaluation"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "departments",
+    "endpoints": [
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/departments",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "departments/getAllDepartmentsOfTenant"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/tenants/:tenantId/departments",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "shared/checkUserPermission",
+            "options": {
+              "scopes": [
+                "manage_departments"
+              ],
+              "resource": {
+                "tenantId": true
+              }
+            }
+          },
+          {
+            "name": "departments/createDepartment"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/departments/:departmentId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "departments/getDepartment"
+          }
+        ]
+      },
+      {
+        "method": "PATCH",
+        "name": "/api/v1/tenants/:tenantId/departments/:departmentId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "shared/checkUserPermission",
+            "options": {
+              "scopes": [
+                "manage_departments"
+              ],
+              "resource": {
+                "tenantId": true
+              }
+            }
+          },
+          {
+            "name": "departments/updateDepartment"
+          }
+        ]
+      },
+      {
+        "method": "DELETE",
+        "name": "/api/v1/tenants/:tenantId/departments/:departmentId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "shared/checkUserPermission",
+            "options": {
+              "scopes": [
+                "manage_departments"
+              ],
+              "resource": {
+                "tenantId": true
+              }
+            }
+          },
+          {
+            "name": "departments/deleteDepartment"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "recruitmentStages",
+    "endpoints": [
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/recruitment-stages",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "recruitmentStages/getAllRecruitmentStagesOfTenant"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/tenants/:tenantId/recruitment-stages",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "shared/checkUserPermission",
+            "options": {
+              "scopes": [
+                "manage_recruitment_stage"
+              ],
+              "resource": {
+                "tenantId": true
+              }
+            }
+          },
+          {
+            "name": "recruitmentStages/createRecruitmentStage"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/recruitment-stages/:recruitmentStageId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "recruitmentStages/getRecruitmentStageOfTenant"
+          }
+        ]
+      },
+      {
+        "method": "PATCH",
+        "name": "/api/v1/tenants/:tenantId/recruitment-stages/:recruitmentStageId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "shared/checkUserPermission",
+            "options": {
+              "scopes": [
+                "manage_recruitment_stage"
+              ],
+              "resource": {
+                "tenantId": true
+              }
+            }
+          },
+          {
+            "name": "recruitmentStages/updateRecruitmentStage"
+          }
+        ]
+      },
+      {
+        "method": "DELETE",
+        "name": "/api/v1/tenants/:tenantId/recruitment-stages/:recruitmentStageId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "shared/checkUserPermission",
+            "options": {
+              "scopes": [
+                "manage_recruitment_stage"
+              ],
+              "resource": {
+                "tenantId": true
+              }
+            }
+          },
+          {
+            "name": "recruitmentStages/deleteRecruitmentStage"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "recruitmentStageSteps",
+    "endpoints": [
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/recruitment-stages/:recruitmentStageId/steps",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "recruitmentStageSteps/getAllRecruitmentStageStepsOfTenant"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/tenants/:tenantId/recruitment-stages/:recruitmentStageId/steps",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "shared/checkUserPermission",
+            "options": {
+              "scopes": [
+                "manage_recruitment_stage"
+              ],
+              "resource": {
+                "tenantId": true
+              }
+            }
+          },
+          {
+            "name": "recruitmentStageSteps/createRecruitmentStageStep"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/recruitment-stages/:recruitmentStageId/steps/:stepId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "recruitmentStageSteps/getRecruitmentStageStepOfTenant"
+          }
+        ]
+      },
+      {
+        "method": "PATCH",
+        "name": "/api/v1/tenants/:tenantId/recruitment-stages/:recruitmentStageId/steps/:stepId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "shared/checkUserPermission",
+            "options": {
+              "scopes": [
+                "manage_recruitment_stage"
+              ],
+              "resource": {
+                "tenantId": true
+              }
+            }
+          },
+          {
+            "name": "recruitmentStageSteps/updateRecruitmentStageStep"
+          }
+        ]
+      },
+      {
+        "method": "DELETE",
+        "name": "/api/v1/tenants/:tenantId/recruitment-stages/:recruitmentStageId/steps/:stepId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "shared/checkUserPermission",
+            "options": {
+              "scopes": [
+                "manage_recruitment_stage"
+              ],
+              "resource": {
+                "tenantId": true
+              }
+            }
+          },
+          {
+            "name": "recruitmentStageSteps/deleteRecruitmentStageStep"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "recruitmentEmailConfigs",
+    "endpoints": [
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/recruitment-email-configs",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "recruitmentEmailConfigs/fetchAllEmailConfigsOfStage"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/recruitment-email-configs/:stepId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "recruitmentEmailConfigs/getEmailConfigOfStep"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/tenants/:tenantId/recruitment-email-configs",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "shared/checkUserPermission",
+            "options": {
+              "scopes": [
+                "manage_recruitment_stage"
+              ],
+              "resource": {
+                "tenantId": true
+              }
+            }
+          },
+          {
+            "name": "recruitmentEmailConfigs/createRecruitmentEmailConfig"
+          }
+        ]
+      },
+      {
+        "method": "PATCH",
+        "name": "/api/v1/tenants/:tenantId/recruitment-email-configs/:configId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "shared/checkUserPermission",
+            "options": {
+              "scopes": [
+                "manage_recruitment_stage"
+              ],
+              "resource": {
+                "tenantId": true
+              }
+            }
+          },
+          {
+            "name": "recruitmentEmailConfigs/updateRecruitmentEmailConfig"
+          }
+        ]
+      },
+      {
+        "method": "DELETE",
+        "name": "/api/v1/tenants/:tenantId/recruitment-email-configs/:configId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "shared/checkUserPermission",
+            "options": {
+              "scopes": [
+                "manage_recruitment_stage"
+              ],
+              "resource": {
+                "tenantId": true
+              }
+            }
+          },
+          {
+            "name": "recruitmentEmailConfigs/deleteRecruitmentEmailConfig"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "meetings",
+    "endpoints": [
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/meetings",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "shared/checkUserPermission",
+            "options": {
+              "scopes": [
+                "manage_meetings"
+              ],
+              "resource": {
+                "tenantId": true
+              }
+            }
+          },
+          {
+            "name": "meetings/getAllMeetingsOfTenant"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/tenants/:tenantId/meetings",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "shared/checkUserPermission",
+            "options": {
+              "scopes": [
+                "manage_meetings"
+              ],
+              "resource": {
+                "tenantId": true
+              }
+            }
+          },
+          {
+            "name": "meetings/createMeeting"
+          }
+        ]
+      },
+      {
+        "method": "PATCH",
+        "name": "/api/v1/tenants/:tenantId/meetings/:meetingId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "shared/checkUserPermission",
+            "options": {
+              "scopes": [
+                "manage_meetings"
+              ],
+              "resource": {
+                "tenantId": true
+              }
+            }
+          },
+          {
+            "name": "meetings/updateMeeting"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/meetings/:meetingId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "shared/checkUserPermission",
+            "options": {
+              "scopes": [
+                "manage_meetings"
+              ],
+              "resource": {
+                "tenantId": true
+              }
+            }
+          },
+          {
+            "name": "meetings/getMeetingOfTenant"
+          }
+        ]
+      },
+      {
+        "method": "DELETE",
+        "name": "/api/v1/tenants/:tenantId/meetings/:meetingId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "shared/checkUserPermission",
+            "options": {
+              "scopes": [
+                "manage_meetings"
+              ],
+              "resource": {
+                "tenantId": true
+              }
+            }
+          },
+          {
+            "name": "meetings/deleteMeeting"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "candidate",
+    "endpoints": [
+      {
+        "method": "GET",
+        "name": "/api/v1/candidate/my-applications",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "candidate/myApplications"
+          }
+        ]
+      },
+      {
+        "method": "DELETE",
+        "name": "/api/v1/candidate/my-applications/:applicationId/draw",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "candidate/deleteApplication"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/candidate/onboard/:onboardingId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "candidate/onboard/getMyOnboardingDetail"
+          }
+        ]
+      },
+      {
+        "method": "PATCH",
+        "name": "/api/v1/candidate/onboard/:onboardingId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "candidate/onboard/updateMyOnboarding"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/candidate/jobs/:jobId/apply",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "candidate/jobs/apply",
+            "options": {
+              "mode": "candidate"
+            }
+          },
+          {
+            "name": "quotas/checkQuota",
+            "options": {
+              "target": "jobapplicant"
+            }
+          },
+          {
+            "name": "jobs/geminiAiEvaluation"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/candidate/myCVs",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "candidate/myCVs"
+          }
+        ]
+      },
+      {
+        "method": "PATCH",
+        "name": "/api/v1/candidate/cv/:cvId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "candidate/updateCV"
+          }
+        ]
+      },
+      {
+        "method": "DELETE",
+        "name": "/api/v1/candidate/cv/:cvId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "candidate/deleteCV"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/candidate/jobs/:jobId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "candidate/jobs/getOnePublicJob"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/candidate/my-applications/:applicationId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "candidate/applicationDetail"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/candidate/my-meetings",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "meetings/getMyMeetings"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/meeting",
+        "nodes": [
+          {
+            "name": "meetings/meetingSignature"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "upload",
+    "endpoints": [
+      {
+        "method": "POST",
+        "name": "/api/v1/upload/public",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "upload/publicUpload"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/upload/readFile/:fileKey",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "upload/readFile"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/upload/public/tenantLogoForCompany",
+        "nodes": [
+          {
+            "name": "upload/publicUploadTenantLogo"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/upload/cv/:cvId",
+        "nodes": [
+          {
+            "name": "upload/readCV"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/upload/video/:fileKey",
+        "nodes": [
+          {
+            "name": "upload/readVideo"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/upload/video-presigned-url/:fileKey",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "upload/getVideoPresignedUrl"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/upload/cv",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "upload/privateUpload"
+          },
+          {
+            "name": "upload/uploadCV"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/upload/private",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "upload/privateUpload"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/upload/generate-presigned-url",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "upload/generatePresignedUrl"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/upload/transcribe-video",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "upload/transcribeVideoFromR2"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "autoFill",
+    "endpoints": [
+      {
+        "method": "POST",
+        "name": "/api/v1/candidate/autoFill/:fileKey",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "upload/readFile"
+          },
+          {
+            "name": "candidate/cvAutoFill/autoFill"
+          },
+          {
+            "name": "upload/jsonToAutoFill"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "candidateEducations",
+    "endpoints": [
+      {
+        "method": "GET",
+        "name": "/api/v1/candidate/educations",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "candidate/educations/myEducations"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/candidate/educations",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "candidate/educations/createEducation"
+          }
+        ]
+      },
+      {
+        "method": "PATCH",
+        "name": "/api/v1/candidate/educations/:educationId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "candidate/educations/updateEducation"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/candidate/educations/:educationId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "candidate/educations/getOneEducation"
+          }
+        ]
+      },
+      {
+        "method": "DELETE",
+        "name": "/api/v1/candidate/educations/:educationId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "candidate/educations/deleteEducation"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "candidateExperiences",
+    "endpoints": [
+      {
+        "method": "GET",
+        "name": "/api/v1/candidate/experiences",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "candidate/experiences/myExperiences"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/candidate/experiences",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "candidate/experiences/createExperience"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/candidate/experiences/:experienceId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "candidate/experiences/getOneExperience"
+          }
+        ]
+      },
+      {
+        "method": "PATCH",
+        "name": "/api/v1/candidate/experiences/:experienceId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "candidate/experiences/updateExperience"
+          }
+        ]
+      },
+      {
+        "method": "DELETE",
+        "name": "/api/v1/candidate/experiences/:experienceId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "candidate/experiences/deleteExperience"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "candidateCertificates",
+    "endpoints": [
+      {
+        "method": "GET",
+        "name": "/api/v1/candidate/certificates",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "candidate/certificates/myCertificates"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/candidate/certificates",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "candidate/certificates/createCertificate"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/candidate/certificates/:certificateId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "candidate/certificates/getOneCertificate"
+          }
+        ]
+      },
+      {
+        "method": "PATCH",
+        "name": "/api/v1/candidate/certificates/:certificateId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "candidate/certificates/updateCertificate"
+          }
+        ]
+      },
+      {
+        "method": "DELETE",
+        "name": "/api/v1/candidate/certificates/:certificateId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "candidate/certificates/deleteCertificate"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "candidateLanguages",
+    "endpoints": [
+      {
+        "method": "GET",
+        "name": "/api/v1/candidate/languages",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "candidate/languages/myLanguages"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/candidate/languages",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "candidate/languages/createLanguage"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/candidate/languages/:languageId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "candidate/languages/getOneLanguage"
+          }
+        ]
+      },
+      {
+        "method": "PATCH",
+        "name": "/api/v1/candidate/languages/:languageId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "candidate/languages/updateLanguage"
+          }
+        ]
+      },
+      {
+        "method": "DELETE",
+        "name": "/api/v1/candidate/languages/:languageId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "candidate/languages/deleteLanguage"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "candidateSkills",
+    "endpoints": [
+      {
+        "method": "GET",
+        "name": "/api/v1/candidate/skills",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "candidate/skills/mySkills"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/candidate/skills",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "candidate/skills/createSkill"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/candidate/skills/:skillId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "candidate/skills/getOneSkill"
+          }
+        ]
+      },
+      {
+        "method": "PATCH",
+        "name": "/api/v1/candidate/skills/:skillId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "candidate/skills/updateSkill"
+          }
+        ]
+      },
+      {
+        "method": "DELETE",
+        "name": "/api/v1/candidate/skills/:skillId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "candidate/skills/deleteSkill"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "tenantCandidateEducations",
+    "endpoints": [
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/educations",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "candidate/educations/getAllEducationsOfTenant"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "candidates",
+    "endpoints": [
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/candidates",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "candidates/getAllCandidatesOfTenant"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/candidates/:candidateId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "candidates/getOneCandidateOfTenant"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/archiveCandidates/:candidateId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "candidates/getOneArchiveCandidateOfTenant"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/candidates/:candidateId/cv",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "candidates/getAllCVsOfCandidate"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "candidateComments",
+    "endpoints": [
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/candidates/:candidateId/comments",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "candidates/comments/getAllCommentsOfCandidate"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/tenants/:tenantId/candidates/:candidateId/comments",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "candidates/comments/createComment"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/candidates/:candidateId/comments/:commentId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "candidates/comments/getCommentOfCandidate"
+          }
+        ]
+      },
+      {
+        "method": "PATCH",
+        "name": "/api/v1/tenants/:tenantId/candidates/:candidateId/comments/:commentId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "shared/checkUserPermission"
+          }
+        ]
+      },
+      {
+        "method": "DELETE",
+        "name": "/api/v1/tenants/:tenantId/candidates/:candidateId/comments/:commentId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "candidates/comments/deleteComment"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "auth",
+    "endpoints": [
+      {
+        "method": "GET",
+        "name": "/api/v1/auth/logout",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "auth/logout"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/auth/forgot-password",
+        "nodes": [
+          {
+            "name": "auth/forgotPassword"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/auth/changePassword",
+        "nodes": [
+          {
+            "name": "auth/changePassword"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/auth/login",
+        "nodes": [
+          {
+            "name": "auth/login"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/auth/register",
+        "nodes": [
+          {
+            "name": "auth/register"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/sendSmsOTP",
+        "nodes": [
+          {
+            "name": "auth/sendSmsOTP"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/auth/checkUserPassword",
+        "nodes": [
+          {
+            "name": "auth/checkUserPassword"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/auth/verifyCode",
+        "nodes": [
+          {
+            "name": "auth/verifyCode"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/verifySmsOTP",
+        "nodes": [
+          {
+            "name": "auth/verifySmsOTP"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/oauth/exchange",
+        "nodes": [
+          {
+            "name": "auth/oauthExchange"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/oauth/authorize",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "auth/oauth"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/auth/google",
+        "nodes": [
+          {
+            "name": "auth/google"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/auth/google/callback",
+        "nodes": [
+          {
+            "name": "auth/googleCallback"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/auth/linkedin",
+        "nodes": [
+          {
+            "name": "auth/Linkedin"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/auth/linkedin/callback",
+        "nodes": [
+          {
+            "name": "auth/LinkedinCallback"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "outsideJobs",
+    "endpoints": [
+      {
+        "method": "GET",
+        "name": "/api/v1/outsideJobs",
+        "nodes": [
+          {
+            "name": "outsideJobs/fetchJobs"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/outsideJobs/:id",
+        "nodes": [
+          {
+            "name": "outsideJobs/fetchJobById"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "onboardingworkflow",
+    "endpoints": [
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/onboardingworkflows",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "onboardingworkflows/findAll"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/tenants/:tenantId/onboardingworkflows/:id/assign",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "onboardingworkflows/assignToUser"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/onboardingworkflows/:id",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "onboardingworkflows/find"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/tenants/:tenantId/onboardingworkflows",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "onboardingworkflows/create"
+          }
+        ]
+      },
+      {
+        "method": "PATCH",
+        "name": "/api/v1/tenants/:tenantId/onboardingworkflows/:id",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "onboardingworkflows/update"
+          }
+        ]
+      },
+      {
+        "method": "DELETE",
+        "name": "/api/v1/tenants/:tenantId/onboardingworkflows/:id",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "onboardingworkflows/delete"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "onboardingResponses",
+    "endpoints": [
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/onboardingresponses",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "onboardingresponses/findAll"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/tenants/:tenantId/onboardingresponses/:id/change-status",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "onboardingresponses/changeStatus"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/onboardingresponses/:id",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "onboardingresponses/find"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/tenants/:tenantId/onboardingresponses",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "onboardingresponses/create"
+          }
+        ]
+      },
+      {
+        "method": "PATCH",
+        "name": "/api/v1/tenants/:tenantId/onboardingresponses/:id",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "onboardingresponses/update"
+          }
+        ]
+      },
+      {
+        "method": "DELETE",
+        "name": "/api/v1/tenants/:tenantId/onboardingresponses/:id",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "onboardingresponses/delete"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "employees",
+    "endpoints": [
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/employees",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "employees/getAllEmployeesOfTenant"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/profile/getMyEmployeeData",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "employees/getMyEmployeeData"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/tenants/:tenantId/employees",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "shared/checkUserPermission",
+            "options": {
+              "scopes": [
+                "manage_employees"
+              ],
+              "resource": {
+                "tenantId": true
+              }
+            }
+          },
+          {
+            "name": "employees/createEmployee"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/employees/:employeeId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "employees/getEmployee"
+          }
+        ]
+      },
+      {
+        "method": "PATCH",
+        "name": "/api/v1/tenants/:tenantId/employees/:employeeId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "shared/checkUserPermission",
+            "options": {
+              "scopes": [
+                "manage_employees"
+              ],
+              "resource": {
+                "tenantId": true
+              }
+            }
+          },
+          {
+            "name": "employees/updateEmployee"
+          }
+        ]
+      },
+      {
+        "method": "DELETE",
+        "name": "/api/v1/tenants/:tenantId/employees/:employeeId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "shared/checkUserPermission",
+            "options": {
+              "scopes": [
+                "manage_employees"
+              ],
+              "resource": {
+                "tenantId": true
+              }
+            }
+          },
+          {
+            "name": "employees/deleteEmployee"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "applicants",
+    "endpoints": [
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/applicants",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "applicants/fetchApplicants"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/applicants/:jobId/candidate/:candidateId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "applicants/applicantDetail"
+          }
+        ]
+      },
+      {
+        "method": "PATCH",
+        "name": "/api/v1/tenants/:tenantId/applicants/:jobId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "applicants/update"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "mail",
+    "endpoints": [
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/mails",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "mails/findAll"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/candidate-mails",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "mails/findAllOfCandidate"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/mails/:id",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "mails/find"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/mails/:mailId/attachments",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "mails/downloadAttachment"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/tenants/:tenantId/mails",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "quotas/checkQuota",
+            "options": {
+              "target": "email"
+            }
+          },
+          {
+            "name": "mails/create"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/tenants/:tenantId/mails/action",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "mails/action"
+          }
+        ]
+      },
+      {
+        "method": "DELETE",
+        "name": "/api/v1/tenants/:tenantId/mails/:id",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "mails/delete"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/tenants/:tenantId/mailAnotherJob",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "mails/sendMailAnotherJob"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "candidateEvaluations",
+    "endpoints": [
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/candidates/:candidateId/evaluations",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "candidates/evaluations/getAll"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/tenants/:tenantId/candidates/:candidateId/evaluations",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "candidates/evaluations/create"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/candidates/:candidateId/evaluations/:evaluationId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "candidates/evaluations/getOne"
+          }
+        ]
+      },
+      {
+        "method": "PATCH",
+        "name": "/api/v1/tenants/:tenantId/candidates/:candidateId/evaluations/:evaluationId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "candidates/evaluations/update"
+          }
+        ]
+      },
+      {
+        "method": "DELETE",
+        "name": "/api/v1/tenants/:tenantId/candidates/:candidateId/evaluations/:evaluationId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "candidates/evaluations/delete"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "candidateOnboardings",
+    "endpoints": [
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/candidate-onboardings",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "candidates/onboardings/getAll"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/candidate-onboardings/:onboardingId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "candidates/onboardings/getOne"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/tenants/:tenantId/candidate-onboardings",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "candidates/onboardings/create"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "evaluationTemplates",
+    "endpoints": [
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/evaluationTemplates",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "evaluationTemplates/getAllOfTenant"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/tenants/:tenantId/evaluationTemplates",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "evaluationTemplates/create"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/evaluationTemplates/:evaluationTemplateId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "evaluationTemplates/getOneOfTenant"
+          }
+        ]
+      },
+      {
+        "method": "PATCH",
+        "name": "/api/v1/tenants/:tenantId/evaluationTemplates/:evaluationTemplateId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "evaluationTemplates/update"
+          }
+        ]
+      },
+      {
+        "method": "DELETE",
+        "name": "/api/v1/tenants/:tenantId/evaluationTemplates/:evaluationTemplateId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "evaluationTemplates/delete"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "admin-postingChannels",
+    "endpoints": [
+      {
+        "method": "GET",
+        "name": "/api/v1/admin/:adminTenantId/postingChannels",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkAdminTenant"
+          },
+          {
+            "name": "shared/checkAdminPermission"
+          },
+          {
+            "name": "admin/postingChannels/getAllOfAdminTenant"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/admin/:adminTenantId/tenants/:tenantId/postingChannels",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkAdminTenant"
+          },
+          {
+            "name": "admin/postingChannels/getAllByTenantId"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "admin-candidates",
+    "endpoints": [
+      {
+        "method": "GET",
+        "name": "/api/v1/admin/:adminTenantId/candidates",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkAdminTenant"
+          },
+          {
+            "name": "shared/checkAdminPermission"
+          },
+          {
+            "name": "admin/candidates/getAllCandidatesOfAdminTenant"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/admin/:adminTenantId/tenants/:tenantId/candidates",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkAdminTenant"
+          },
+          {
+            "name": "admin/candidates/getAllCandidatesOfTenant"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/admin/:adminTenantId/candidates/:candidateId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkAdminTenant"
+          },
+          {
+            "name": "admin/candidates/getById"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/admin/:adminTenantId/candidates/profile/:userId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkAdminTenant"
+          },
+          {
+            "name": "admin/candidates/getCandidateProfile"
+          }
+        ]
+      },
+      {
+        "method": "PATCH",
+        "name": "/api/v1/admin/:adminTenantId/candidates/profile/:userId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkAdminTenant"
+          },
+          {
+            "name": "admin/candidates/updateCandidateProfile"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "admin-tenantEmployees",
+    "endpoints": [
+      {
+        "method": "GET",
+        "name": "/api/v1/admin/:adminTenantId/tenants/:tenantId/employees",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkAdminTenant"
+          },
+          {
+            "name": "admin/employees/getAllEmployeesByTenantId"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "admin-recruitmentStages",
+    "endpoints": [
+      {
+        "method": "GET",
+        "name": "/api/v1/admin/:adminTenantId/tenants/:tenantId/recruitmentStages",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkAdminTenant"
+          },
+          {
+            "name": "recruitmentStages/getAllRecruitmentStagesOfTenant"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "admin-jobs",
+    "endpoints": [
+      {
+        "method": "GET",
+        "name": "/api/v1/admin/:adminTenantId/jobs",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkAdminTenant"
+          },
+          {
+            "name": "shared/checkAdminPermission"
+          },
+          {
+            "name": "admin/jobs/getAllJobsOfAdminTenant"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/admin/:adminTenantId/tenants/:tenantId/jobs",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkAdminTenant"
+          },
+          {
+            "name": "jobs/getAllJobsOfTenant"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/admin/:adminTenantId/jobs/:jobId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkAdminTenant"
+          },
+          {
+            "name": "admin/jobs/getById"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/admin/:adminTenantId/jobs/:jobId/applications",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkAdminTenant"
+          },
+          {
+            "name": "admin/jobs/getApplicationsOfJob"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/admin/:adminTenantId/tenants/:tenantId/jobs",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkAdminTenant"
+          },
+          {
+            "name": "jobs/createJob"
+          }
+        ]
+      },
+      {
+        "method": "PATCH",
+        "name": "/api/v1/admin/:adminTenantId/jobs/:jobId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkAdminTenant"
+          },
+          {
+            "name": "admin/jobs/updateJob"
+          }
+        ]
+      },
+      {
+        "method": "DELETE",
+        "name": "/api/v1/admin/:adminTenantId/tenants/:tenantId/jobs/:jobId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkAdminTenant"
+          },
+          {
+            "name": "admin/jobs/deleteJob"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "admin-tenants",
+    "endpoints": [
+      {
+        "method": "GET",
+        "name": "/api/v1/admin/:adminTenantId/tenants",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkAdminTenant"
+          },
+          {
+            "name": "shared/checkAdminPermission"
+          },
+          {
+            "name": "admin/tenants/getAllTenantsOfAdminTenant"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/admin/:adminTenantId/tenants/all",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkAdminTenant"
+          },
+          {
+            "name": "shared/checkAdminPermission"
+          },
+          {
+            "name": "admin/tenants/getAllTenantsList"
+          }
+        ]
+      },
+      {
+        "method": "PATCH",
+        "name": "/api/v1/admin/:adminTenantId/tenants/:tenantId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkAdminTenant"
+          },
+          {
+            "name": "shared/checkAdminPermission"
+          },
+          {
+            "name": "admin/tenants/updateOneTenant"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/admin/:adminTenantId/postingChannels",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkAdminTenant"
+          },
+          {
+            "name": "shared/checkAdminPermission"
+          },
+          {
+            "name": "admin/postingChannels/getAllOfAdminTenant"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/admin/:adminTenantId/tenants/:tenantId/postingChannels",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkAdminTenant"
+          },
+          {
+            "name": "shared/checkAdminPermission"
+          },
+          {
+            "name": "admin/postingChannels/getAllByTenantId"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/admin/:adminTenantId/postingChannels/:channelId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkAdminTenant"
+          },
+          {
+            "name": "shared/checkAdminPermission"
+          },
+          {
+            "name": "admin/postingChannels/getOne"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/admin/:adminTenantId/postingChannels",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkAdminTenant"
+          },
+          {
+            "name": "shared/checkAdminPermission"
+          },
+          {
+            "name": "admin/postingChannels/create"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/admin/:adminTenantId/postingChannels/populate",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkAdminTenant"
+          },
+          {
+            "name": "shared/checkAdminPermission"
+          },
+          {
+            "name": "admin/postingChannels/populatePostingChannels"
+          }
+        ]
+      },
+      {
+        "method": "PATCH",
+        "name": "/api/v1/admin/:adminTenantId/postingChannels/:channelId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkAdminTenant"
+          },
+          {
+            "name": "shared/checkAdminPermission"
+          },
+          {
+            "name": "admin/postingChannels/update"
+          }
+        ]
+      },
+      {
+        "method": "DELETE",
+        "name": "/api/v1/admin/:adminTenantId/postingChannels/:channelId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkAdminTenant"
+          },
+          {
+            "name": "shared/checkAdminPermission"
+          },
+          {
+            "name": "admin/postingChannels/delete"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "admin-applications",
+    "endpoints": [
+      {
+        "method": "GET",
+        "name": "/api/v1/admin/:adminTenantId/applications",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkAdminTenant"
+          },
+          {
+            "name": "shared/checkAdminPermission"
+          },
+          {
+            "name": "admin/applications/fetchApplications"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/admin/:adminTenantId/applications",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkAdminTenant"
+          },
+          {
+            "name": "shared/checkAdminPermission"
+          },
+          {
+            "name": "candidate/jobs/apply",
+            "options": {
+              "mode": "admin"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "profile",
+    "endpoints": [
+      {
+        "method": "POST",
+        "name": "/api/v1/profile/create",
+        "nodes": [
+          {
+            "name": "profile/createProfile"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/profile/getMe",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "profile/getMe"
+          }
+        ]
+      },
+      {
+        "method": "PATCH",
+        "name": "/api/v1/profile/updateMe",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "profile/updateMe"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/profile/tenants",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "profile/tenantsOfUser"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/profile/postingChannels/:tenantId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "profile/postingChannelsOfUser"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/profile/listManageablePostingChannels",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "profile/listManageablePostingChannelsOfUser"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/profile/permissions",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "profile/permissionsOfUser"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "tenants",
+    "endpoints": [
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "tenants/getAllTenants"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/tenants",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "tenants/createOneTenant"
+          },
+          {
+            "name": "tenantColor/determineTenantColor"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/tenants/createTeantForCompany",
+        "nodes": [
+          {
+            "name": "tenants/createTenantForCompany"
+          },
+          {
+            "name": "tenantColor/determineTenantColor"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/tenants/parentTenant",
+        "nodes": [
+          {
+            "name": "tenants/createCompanyTenant"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/infoByDomain/:domain",
+        "nodes": [
+          {
+            "name": "tenants/getTenantInfoByDomain"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "tenants/getOneTenant"
+          }
+        ]
+      },
+      {
+        "method": "PATCH",
+        "name": "/api/v1/tenants/:tenantId/qr",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "tenants/tenantQr"
+          }
+        ]
+      },
+      {
+        "method": "PATCH",
+        "name": "/api/v1/tenants/:tenantId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "tenants/updateOneTenant"
+          }
+        ]
+      },
+      {
+        "method": "DELETE",
+        "name": "/api/v1/tenants/:tenantId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "tenants/deleteOneTenant"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/members",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "tenants/members/getAllMembersOfTenant"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/tenants/:tenantId/members",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "tenants/members/inviteMemberToTenant"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/tenants/:tenantId/members/resend",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "tenants/members/resendCreateProfileEmail"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/members/:memberId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "tenants/members/getMemberOfTenant"
+          }
+        ]
+      },
+      {
+        "method": "DELETE",
+        "name": "/api/v1/tenants/:tenantId/members/:memberId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "tenants/members/removeMemberFromTenant"
+          }
+        ]
+      },
+      {
+        "method": "PATCH",
+        "name": "/api/v1/tenants/:tenantId/members/:memberId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "tenants/members/updateOneMember"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/members/:memberId/permissions",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "permissions/checkPermissionListAccess"
+          },
+          {
+            "name": "permissions/getMemberPermissions"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/tenants/:tenantId/members/:memberId/permissions",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "permissions/checkPermissionManageAccess"
+          },
+          {
+            "name": "permissions/managePermissionsOfUser"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "healthyCheck",
+    "endpoints": [
+      {
+        "method": "GET",
+        "name": "/healthyCheck",
+        "nodes": [
+          {
+            "name": "healthyCheck/healthyCheck"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "emailTemplates",
+    "endpoints": [
+      {
+        "method": "POST",
+        "name": "/api/v1/tenants/:tenantId/emailTemplates",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "emailTemplates/create"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/emailTemplates",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "emailTemplates/getAll"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/emailTemplates/:id",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "emailTemplates/getOne"
+          }
+        ]
+      },
+      {
+        "method": "DELETE",
+        "name": "/api/v1/tenants/:tenantId/emailTemplates/:id",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "emailTemplates/delete"
+          }
+        ]
+      },
+      {
+        "method": "PATCH",
+        "name": "/api/v1/tenants/:tenantId/emailTemplates/:id",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "emailTemplates/update"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "disqualifyEmailTemplates",
+    "endpoints": [
+      {
+        "method": "POST",
+        "name": "/api/v1/tenants/:tenantId/disqualifyEmailTemplates",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "disqualifyEmailTemplates/create"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/disqualifyEmailTemplates",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "disqualifyEmailTemplates/getOne"
+          }
+        ]
+      },
+      {
+        "method": "DELETE",
+        "name": "/api/v1/tenants/:tenantId/disqualifyEmailTemplates/:id",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "disqualifyEmailTemplates/delete"
+          }
+        ]
+      },
+      {
+        "method": "PATCH",
+        "name": "/api/v1/tenants/:tenantId/disqualifyEmailTemplates/:id",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "disqualifyEmailTemplates/update"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "categories",
+    "endpoints": [
+      {
+        "method": "GET",
+        "name": "/api/v1/categories",
+        "nodes": [
+          {
+            "name": "categories/getAllCategory"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/categories/:categoryId/jobs",
+        "nodes": [
+          {
+            "name": "categories/getAllJobsOfCategory"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/tenantCategories",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "categories/createTenantCategory"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/admin/:adminTenantId/categories",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkAdminTenant"
+          },
+          {
+            "name": "shared/checkAdminPermission"
+          },
+          {
+            "name": "admin/categories/createCategory"
+          }
+        ]
+      },
+      {
+        "method": "PATCH",
+        "name": "/api/v1/admin/:adminTenantId/categories/:categoryId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkAdminTenant"
+          },
+          {
+            "name": "shared/checkAdminPermission"
+          },
+          {
+            "name": "admin/categories/updateCategory"
+          }
+        ]
+      },
+      {
+        "method": "DELETE",
+        "name": "/api/v1/admin/:adminTenantId/categories/:categoryId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkAdminTenant"
+          },
+          {
+            "name": "shared/checkAdminPermission"
+          },
+          {
+            "name": "admin/categories/deleteCategory"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "admin-users",
+    "endpoints": [
+      {
+        "method": "POST",
+        "name": "/api/v1/admin/:adminTenantId/users",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkAdminTenant"
+          },
+          {
+            "name": "shared/checkAdminPermission"
+          },
+          {
+            "name": "admin/users/create"
+          }
+        ]
+      },
+      {
+        "method": "PATCH",
+        "name": "/api/v1/admin/:adminTenantId/users/:userId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkAdminTenant"
+          },
+          {
+            "name": "shared/checkAdminPermission"
+          },
+          {
+            "name": "admin/users/updateOneUser"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/admin/:adminTenantId/users",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkAdminTenant"
+          },
+          {
+            "name": "shared/checkAdminPermission"
+          },
+          {
+            "name": "admin/users/getAll"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/admin/:adminTenantId/users/:userId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkAdminTenant"
+          },
+          {
+            "name": "shared/checkAdminPermission"
+          },
+          {
+            "name": "admin/users/getById"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/admin/:adminTenantId/users/:userId/experiences",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkAdminTenant"
+          },
+          {
+            "name": "shared/checkAdminPermission"
+          },
+          {
+            "name": "admin/users/getUserExperiences"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/admin/:adminTenantId/users/:userId/experiences",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkAdminTenant"
+          },
+          {
+            "name": "shared/checkAdminPermission"
+          },
+          {
+            "name": "admin/users/createUserExperience"
+          }
+        ]
+      },
+      {
+        "method": "DELETE",
+        "name": "/api/v1/admin/:adminTenantId/users/:userId/experiences/:experienceId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkAdminTenant"
+          },
+          {
+            "name": "shared/checkAdminPermission"
+          },
+          {
+            "name": "admin/users/deleteUserExperience"
+          }
+        ]
+      },
+      {
+        "method": "PATCH",
+        "name": "/api/v1/admin/:adminTenantId/users/:userId/experiences/:experienceId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkAdminTenant"
+          },
+          {
+            "name": "shared/checkAdminPermission"
+          },
+          {
+            "name": "admin/users/updateUserExperience"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/admin/:adminTenantId/users/:userId/educations",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkAdminTenant"
+          },
+          {
+            "name": "shared/checkAdminPermission"
+          },
+          {
+            "name": "admin/users/getUserEducations"
+          }
+        ]
+      },
+      {
+        "method": "PATCH",
+        "name": "/api/v1/admin/:adminTenantId/users/:userId/educations/:educationId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkAdminTenant"
+          },
+          {
+            "name": "shared/checkAdminPermission"
+          },
+          {
+            "name": "admin/users/updateUserEducation"
+          }
+        ]
+      },
+      {
+        "method": "DELETE",
+        "name": "/api/v1/admin/:adminTenantId/users/:userId/educations/:educationId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkAdminTenant"
+          },
+          {
+            "name": "shared/checkAdminPermission"
+          },
+          {
+            "name": "admin/users/deleteUserEducation"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/admin/:adminTenantId/users/:userId/educations",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkAdminTenant"
+          },
+          {
+            "name": "shared/checkAdminPermission"
+          },
+          {
+            "name": "admin/users/createUserEducation"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/admin/:adminTenantId/users/:userId/certificates",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkAdminTenant"
+          },
+          {
+            "name": "shared/checkAdminPermission"
+          },
+          {
+            "name": "admin/users/getUserCertificates"
+          }
+        ]
+      },
+      {
+        "method": "PATCH",
+        "name": "/api/v1/admin/:adminTenantId/users/:userId/certificates/:certificateId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkAdminTenant"
+          },
+          {
+            "name": "shared/checkAdminPermission"
+          },
+          {
+            "name": "admin/users/updateUserCertificate"
+          }
+        ]
+      },
+      {
+        "method": "DELETE",
+        "name": "/api/v1/admin/:adminTenantId/users/:userId/certificates/:certificateId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkAdminTenant"
+          },
+          {
+            "name": "shared/checkAdminPermission"
+          },
+          {
+            "name": "admin/users/deleteUserCertificate"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/admin/:adminTenantId/users/:userId/certificates",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkAdminTenant"
+          },
+          {
+            "name": "shared/checkAdminPermission"
+          },
+          {
+            "name": "admin/users/createUserCertificate"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/admin/:adminTenantId/users/:userId/languages",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkAdminTenant"
+          },
+          {
+            "name": "shared/checkAdminPermission"
+          },
+          {
+            "name": "admin/users/getUserLanguages"
+          }
+        ]
+      },
+      {
+        "method": "PATCH",
+        "name": "/api/v1/admin/:adminTenantId/users/:userId/languages/:languageId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkAdminTenant"
+          },
+          {
+            "name": "shared/checkAdminPermission"
+          },
+          {
+            "name": "admin/users/updateUserLanguage"
+          }
+        ]
+      },
+      {
+        "method": "DELETE",
+        "name": "/api/v1/admin/:adminTenantId/users/:userId/languages/:languageId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkAdminTenant"
+          },
+          {
+            "name": "shared/checkAdminPermission"
+          },
+          {
+            "name": "admin/users/deleteUserLanguage"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/admin/:adminTenantId/users/:userId/languages",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkAdminTenant"
+          },
+          {
+            "name": "shared/checkAdminPermission"
+          },
+          {
+            "name": "admin/users/createUserLanguage"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/admin/:adminTenantId/users/:userId/skills",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkAdminTenant"
+          },
+          {
+            "name": "shared/checkAdminPermission"
+          },
+          {
+            "name": "admin/users/getUserSkills"
+          }
+        ]
+      },
+      {
+        "method": "PATCH",
+        "name": "/api/v1/admin/:adminTenantId/users/:userId/skills/:skillId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkAdminTenant"
+          },
+          {
+            "name": "shared/checkAdminPermission"
+          },
+          {
+            "name": "admin/users/updateUserSkill"
+          }
+        ]
+      },
+      {
+        "method": "DELETE",
+        "name": "/api/v1/admin/:adminTenantId/users/:userId/skills/:skillId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkAdminTenant"
+          },
+          {
+            "name": "shared/checkAdminPermission"
+          },
+          {
+            "name": "admin/users/deleteUserSkill"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/admin/:adminTenantId/users/:userId/skills",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkAdminTenant"
+          },
+          {
+            "name": "shared/checkAdminPermission"
+          },
+          {
+            "name": "admin/users/createUserSkill"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/admin/:adminTenantId/users/:userId/cv",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkAdminTenant"
+          },
+          {
+            "name": "shared/checkAdminPermission"
+          },
+          {
+            "name": "upload/privateUpload"
+          },
+          {
+            "name": "admin/users/createUserCv"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/admin/:adminTenantId/users/:userId/cvs",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkAdminTenant"
+          },
+          {
+            "name": "shared/checkAdminPermission"
+          },
+          {
+            "name": "admin/users/getUserCvs"
+          }
+        ]
+      },
+      {
+        "method": "DELETE",
+        "name": "/api/v1/admin/:adminTenantId/users/:userId/cvs/:cvId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkAdminTenant"
+          },
+          {
+            "name": "shared/checkAdminPermission"
+          },
+          {
+            "name": "admin/users/deleteUserCv"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "notifications",
+    "endpoints": [
+      {
+        "method": "GET",
+        "name": "/api/v1/notifications",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "notifications/getAllNotifications"
+          }
+        ]
+      },
+      {
+        "method": "PATCH",
+        "name": "/api/v1/notifications/markAsRead",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "notifications/markAsRead"
+          }
+        ]
+      },
+      {
+        "method": "DELETE",
+        "name": "/api/v1/notifications/:notificationId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "notifications/deleteNotification"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "country",
+    "endpoints": [
+      {
+        "method": "GET",
+        "name": "/api/v1/countries",
+        "nodes": [
+          {
+            "name": "country/getCountries"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/country/:id",
+        "nodes": [
+          {
+            "name": "country/getCountry"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "cron",
+    "endpoints": [
+      {
+        "method": "PATCH",
+        "name": "/api/v1/checkJobEndDateCronJob",
+        "nodes": [
+          {
+            "name": "cron/checkJobEndDateCronJob"
+          }
+        ]
+      },
+      {
+        "method": "PATCH",
+        "name": "/api/v1/sendDisqualifyMailCronJob",
+        "nodes": [
+          {
+            "name": "cron/sendDisqualifyMailCronJob"
+          }
+        ]
+      },
+      {
+        "method": "PATCH",
+        "name": "/api/v1/parseMailCronJob",
+        "nodes": [
+          {
+            "name": "cron/parseMailCronJob"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "users",
+    "endpoints": [
+      {
+        "method": "DELETE",
+        "name": "/api/v1/users/:userId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "users/deleteUserOfTenantMembers"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "aievaluation",
+    "endpoints": [
+      {
+        "method": "POST",
+        "name": "/api/v1/tenants/:tenantId/aievaluation/:fileKey",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "quotas/checkQuota",
+            "options": {
+              "target": "evaluation"
+            }
+          },
+          {
+            "name": "upload/readFile"
+          },
+          {
+            "name": "aievaluation/create"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/aievaluation/candidate/:candidateId/job/:jobId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "aievaluation/getone"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/aievaluation",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "aievaluation/getall"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "archiveAievaluation",
+    "endpoints": [
+      {
+        "method": "POST",
+        "name": "/api/v1/tenants/:tenantId/archiveAievaluation/:fileKey",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "upload/readFile"
+          },
+          {
+            "name": "achiveAievaluation/create"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/archiveAievaluation/candidate/:candidateId/job/:jobId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "achiveAievaluation/getOneArchiveAiEvaluation"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "aiinterviews",
+    "endpoints": [
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/interviews/:jobId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "jobs/getAiInterviewById"
+          }
+        ]
+      },
+      {
+        "method": "PATCH",
+        "name": "/api/v1/tenants/:tenantId/interviews/:jobId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "jobs/updateAiInterview"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/interviewsAnswers/:interviewAnswerId/applicant/:applicantId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "jobs/getTenantofInterviewAnswer"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/interviewsAnswers/:interviewAnswerId/applicant/:applicantId/getAll",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "jobs/getTenantofInterviewAnswergetAll"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "whatsapp-webhook",
+    "endpoints": [
+      {
+        "method": "POST",
+        "name": "/api/v1/whatsapp-webhook",
+        "nodes": [
+          {
+            "name": "whatsapp/sendwhatsappWebhook"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/whatsapp-webhook",
+        "nodes": [
+          {
+            "name": "whatsapp/whatsappWebhook"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "personaltest",
+    "endpoints": [
+      {
+        "method": "POST",
+        "name": "/api/v1/generate-questions",
+        "nodes": [
+          {
+            "name": "personaltest/create"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/evaluate-answers",
+        "nodes": [
+          {
+            "name": "personaltest/answer"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/candidates/:candidateId/personaltest",
+        "nodes": [
+          {
+            "name": "personaltest/find"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "determineTenantColor",
+    "endpoints": [
+      {
+        "method": "GET",
+        "name": "/api/v1/determineTenantColor/:tenant",
+        "nodes": [
+          {
+            "name": "tenantColor/determineTenantColor"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "candidateBlackList",
+    "endpoints": [
+      {
+        "method": "POST",
+        "name": "/api/v1/tenants/:tenantId/jobs/:jobId/application/candidateBlackList",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "candidateBlackLists/candidateBlackList"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/tenants/:tenantId/candidateBlackList",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "candidateBlackLists/removeCandidateBlackList"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "tenant-quotas",
+    "endpoints": [
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/quota",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "quotas/getQuota"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "cvUpload-AutoFill",
+    "endpoints": [
+      {
+        "method": "POST",
+        "name": "/api/v1/uploadAutoFill/cv",
+        "nodes": [
+          {
+            "name": "upload/publicUploadForAutoFill"
+          },
+          {
+            "name": "upload/uploadParseCV"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/applicationJob/applicationJobWithoutRegister",
+        "nodes": [
+          {
+            "name": "jobs/applicationWithoutRegister"
+          },
+          {
+            "name": "quotas/checkQuota",
+            "options": {
+              "target": "jobapplicant"
+            }
+          },
+          {
+            "name": "jobs/geminiAiEvaluation"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "adminTenant-quotas",
+    "endpoints": [
+      {
+        "method": "GET",
+        "name": "/api/v1/admin/:adminTenantId/tenants/:tenantId/quotas",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkAdminTenant"
+          },
+          {
+            "name": "shared/checkAdminPermission"
+          },
+          {
+            "name": "admin/quotas/getTenantQuotas"
+          }
+        ]
+      },
+      {
+        "method": "PATCH",
+        "name": "/api/v1/admin/:adminTenantId/tenants/:tenantId/quotas",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkAdminTenant"
+          },
+          {
+            "name": "shared/checkAdminPermission"
+          },
+          {
+            "name": "admin/quotas/updateTenantQuotas"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "telegram-bot",
+    "endpoints": [
+      {
+        "method": "POST",
+        "name": "/api/v1/telegram-bot",
+        "nodes": [
+          {
+            "name": "telegramBot/telegramBot"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "interview",
+    "endpoints": [
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/interviews",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "cinterview/getAllInterview"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/jobId/:jobId/jobApplicationId/:jobApplicationId/listanswers",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "candidateInterview/getTenantInterviewanswers"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/candidateAnswersId/:candidateAnswerId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "candidateInterview/getInterviewAnswers"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/tenants/:tenantId/interviews",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "cinterview/createInterview"
+          }
+        ]
+      },
+      {
+        "method": "DELETE",
+        "name": "/api/v1/tenants/:tenantId/interviews/:interviewId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "cinterview/deleteInterview"
+          }
+        ]
+      },
+      {
+        "method": "PATCH",
+        "name": "/api/v1/tenants/:tenantId/interviews/:interviewId/interviewQuestions",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "interviewQuestions/updateInterviewQuestions"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/interviews/:interviewId/interviewQuestions",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "interviewQuestions/getinterviewQuestions"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/tenants/:tenantId/job/:jobId/createInterviewQuestion",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "interviewQuestions/createInterviewQuestionWithJob"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/tenants/:tenantId/createInterviewQuestion",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "interviewQuestions/createInterviewQuestionWithText"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/tenants/:tenantId/createInterviewQuestion",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "interviewQuestions/createInterviewQuestionWithText"
+          }
+        ]
+      },
+      {
+        "method": "PATCH",
+        "name": "/api/v1/tenants/:tenantId/interviews/:interviewId/question/:questionId/quesitonToVoice",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "interviewQuestions/questionToSpeech"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/tenants/:tenantId/jobs/:jobId/jobApplication/:applicationId/candidateInvitation",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "quotas/checkQuota",
+            "options": {
+              "target": "interview"
+            }
+          },
+          {
+            "name": "cinterview/interviewInvitation"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/candidateInterview",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "candidateInterview/getAllCandidateInterview"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/candidateInterview/:interviewId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "candidateInterview/getOneCandidateInterview"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/candidateInterviewQuestion/:interviewId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "candidateInterview/getCandidateInterviewQuestion"
+          }
+        ]
+      },
+      {
+        "method": "PATCH",
+        "name": "/api/v1/candidateInterview/:interviewId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "candidateInterview/updateCandidateInterview"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/candidateAnswers/:candidateAnswerId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "candidateAnswers/getCandidateAnswers"
+          }
+        ]
+      },
+      {
+        "method": "PATCH",
+        "name": "/api/v1/candidateAnswers/:candidateAnswerId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "candidateAnswers/updateCandidateAnswers"
+          }
+        ]
+      },
+      {
+        "method": "PATCH",
+        "name": "/api/v1/candidateVideoAnswers/:candidateAnswerId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "candidateAnswers/updateCandidateVideoAnswers"
+          }
+        ]
+      },
+      {
+        "method": "PATCH",
+        "name": "/api/v1/candidateInterview/:interviewId/interviewlogs",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "candidateInterview/interviewLogs"
+          }
+        ]
+      },
+      {
+        "method": "PATCH",
+        "name": "/api/v1/tenants/:tenantId/interview/:interviewId/candidateAnswers/:candidateAnswersId/videoInterviewEvaluation",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "candidateInterview/evaluateCandidateVideoInterview"
+          }
+        ]
+      },
+      {
+        "method": "PATCH",
+        "name": "/api/v1/tenants/:tenantId/interview/:interviewId/candidateAnswers/:candidateAnswersId/textInterviewEvaluation",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "candidateInterview/evaluateCandidateTextInterview"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "quizQuestions",
+    "endpoints": [
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/quiz-questions",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "quizQuestions/getAllQuestions"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/tenants/:tenantId/quiz-questions",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "quizQuestions/createQuestion"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/quiz-questions/:questionId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "quizQuestions/getQuestionById"
+          }
+        ]
+      },
+      {
+        "method": "PUT",
+        "name": "/api/v1/tenants/:tenantId/quiz-questions/:questionId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "quizQuestions/updateQuestion"
+          }
+        ]
+      },
+      {
+        "method": "DELETE",
+        "name": "/api/v1/tenants/:tenantId/quiz-questions/:questionId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "quizQuestions/deleteQuestion"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/quiz-questions/category/:categoryId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "quizQuestions/getQuestionsByCategory"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/quiz-questions/random",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "quizQuestions/getRandomQuestions"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/quiz-questions/statistics",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "quizQuestions/getQuestionStats"
+          }
+        ]
+      },
+      {
+        "method": "PATCH",
+        "name": "/api/v1/tenants/:tenantId/quiz-questions/:questionId/toggle",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "quizQuestions/toggleQuestionStatus"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/tenants/:tenantId/quiz-questions/bulk-import",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "upload/publicUpload"
+          },
+          {
+            "name": "quizQuestions/bulkImportQuestions"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/quiz-questions/excel-template",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "quizQuestions/downloadExcelTemplate"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/tenants/:tenantId/quiz-questions/validate-excel",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "upload/publicUpload"
+          },
+          {
+            "name": "quizQuestions/validateExcelFile"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "quizSets",
+    "endpoints": [
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/quiz-sets",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "quizSets/getAllQuizSets"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/tenants/:tenantId/quiz-sets",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "quizSets/createQuizSet"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/quiz-sets/:quizSetId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "quizSets/getQuizSetById"
+          }
+        ]
+      },
+      {
+        "method": "PUT",
+        "name": "/api/v1/tenants/:tenantId/quiz-sets/:quizSetId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "quizSets/updateQuizSet"
+          }
+        ]
+      },
+      {
+        "method": "DELETE",
+        "name": "/api/v1/tenants/:tenantId/quiz-sets/:quizSetId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "quizSets/deleteQuizSet"
+          }
+        ]
+      },
+      {
+        "method": "PATCH",
+        "name": "/api/v1/tenants/:tenantId/quiz-sets/:quizSetId/toggle",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "quizSets/toggleQuizSetStatus"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "userQuizAssignments",
+    "endpoints": [
+      {
+        "method": "POST",
+        "name": "/api/v1/tenants/:tenantId/quiz-assignments",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "userQuizAssignments/assignQuizToUser"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/quiz-assignments",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "userQuizAssignments/getAllAssignments"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/users/:userId/quiz-assignments",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "userQuizAssignments/getUserAssignments"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/quiz-assignments/:assignmentId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "userQuizAssignments/getAssignmentById"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/tenants/:tenantId/quiz-assignments/:assignmentId/start",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "userQuizAssignments/startQuiz"
+          }
+        ]
+      },
+      {
+        "method": "PATCH",
+        "name": "/api/v1/tenants/:tenantId/quiz-assignments/:assignmentId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "userQuizAssignments/updateAssignment"
+          }
+        ]
+      },
+      {
+        "method": "DELETE",
+        "name": "/api/v1/tenants/:tenantId/quiz-assignments/:assignmentId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "userQuizAssignments/deleteAssignment"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "candidateQuizAssignments",
+    "endpoints": [
+      {
+        "method": "GET",
+        "name": "/api/v1/candidate/quiz-assignments",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "candidate/quizAssignments/getMyQuizAssignments"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/candidate/quiz-assignments/:assignmentId/start",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "candidate/quizAssignments/startMyQuiz"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "candidateQuizSessions",
+    "endpoints": [
+      {
+        "method": "GET",
+        "name": "/api/v1/candidate/quiz-sessions/:sessionId",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "candidate/quizSessions/getMyQuizSession"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/candidate/quiz-sessions/:sessionId/answer",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "candidate/quizSessions/submitMyAnswer"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/candidate/quiz-sessions/:sessionId/complete",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "candidate/quizSessions/completeMyQuiz"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/candidate/quiz-sessions/:sessionId/results",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "candidate/quizSessions/getMySessionResults"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "personalityTest",
+    "endpoints": [
+      {
+        "method": "GET",
+        "name": "/api/v1/personality-test/check-eligibility",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          
+          {
+            "name": "personalityTest/checkEligibility"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/personality-test/start",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "personalityTest/startTest"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/personality-test/sessions/:sessionId/current-question",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "personalityTest/getCurrentQuestion"
+          }
+        ]
+      },
+      {
+        "method": "POST",
+        "name": "/api/v1/personality-test/sessions/:sessionId/answer",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "personalityTest/submitAnswer"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/personality-test/sessions/:sessionId/results",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "personalityTest/getResults"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/personality-test/history",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "personalityTest/getUserTestHistory"
+          }
+        ]
+      },
+      {
+        "method": "GET",
+        "name": "/api/v1/tenants/:tenantId/personality-test/sessions/:sessionId/details",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "personalityTest/getSessionDetails"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "cinterview",
+    "endpoints": [
+      {
+        "method": "POST",
+        "name": "/api/v1/tenants/:tenantId/interviews/:interviewId/bulk-invitation",
+        "nodes": [
+          {
+            "name": "shared/authenticate"
+          },
+          {
+            "name": "shared/checkTenant"
+          },
+          {
+            "name": "cinterview/bulkInterviewInvitation"
+          }
+        ]
+      }
+    ]
+  }
+]

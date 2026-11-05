@@ -1,0 +1,170 @@
+# Merkezi LLM Platformu - yerel/tek sunuculu Docker Compose.
+#
+# NOT: PostgreSQL container'i YOKTUR. Host makinede calisan PostgreSQL'e
+# host.docker.internal uzerinden baglanilir (bkz. .env DATABASE_URL).
+# Yalnizca LLM API portu disariya acilir; Kafka ve Ollama yalnizca ic agdan
+# erisilebilir. GPU yalnizca Ollama icindir ve docker-compose.gpu.yml ile eklenir.
+
+name: ai-platform
+
+x-app-image: &app-image
+  build:
+    context: .
+    dockerfile: Dockerfile
+  image: ai-platform:latest
+
+x-app-common: &app-common
+  env_file:
+    - .env
+  extra_hosts:
+    # Linux'ta host PostgreSQL'e erisim icin gereklidir (Docker Desktop'ta otomatik).
+    - "host.docker.internal:host-gateway"
+  logging:
+    driver: json-file
+    options:
+      max-size: "10m"
+      max-file: "5"
+  restart: unless-stopped
+
+services:
+  kafka:
+    image: confluentinc/cp-kafka:7.7.1
+    container_name: ai-platform-kafka
+    environment:
+      KAFKA_NODE_ID: 1
+      KAFKA_PROCESS_ROLES: "broker,controller"
+      KAFKA_CONTROLLER_QUORUM_VOTERS: "1@kafka:9093"
+      KAFKA_LISTENERS: "PLAINTEXT://0.0.0.0:9092,CONTROLLER://0.0.0.0:9093"
+      KAFKA_ADVERTISED_LISTENERS: "PLAINTEXT://kafka:9092"
+      KAFKA_CONTROLLER_LISTENER_NAMES: "CONTROLLER"
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: "CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT"
+      KAFKA_INTER_BROKER_LISTENER_NAME: "PLAINTEXT"
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      KAFKA_LOG_RETENTION_HOURS: 168
+      CLUSTER_ID: "MkU3OEVBNTcwNTJENDM2Qk"
+    volumes:
+      - kafka_data:/var/lib/kafka/data
+    healthcheck:
+      test: ["CMD", "bash", "-c", "kafka-topics --bootstrap-server localhost:9092 --list"]
+      interval: 10s
+      timeout: 10s
+      retries: 20
+      start_period: 20s
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+    restart: unless-stopped
+    mem_limit: 1500m
+    cpus: 2.0
+
+  kafka-init:
+    <<: [*app-image, *app-common]
+    container_name: ai-platform-kafka-init
+    command: ["python", "-m", "app.cli", "create-topics"]
+    depends_on:
+      kafka:
+        condition: service_healthy
+    restart: "no"
+
+  ollama:
+    image: ollama/ollama:0.40.14
+    container_name: ai-platform-ollama
+    environment:
+      OLLAMA_KEEP_ALIVE: "${OLLAMA_KEEP_ALIVE:-30m}"
+      OLLAMA_NUM_PARALLEL: "${OLLAMA_NUM_PARALLEL:-8}"
+    volumes:
+      - ollama_models:/root/.ollama
+    healthcheck:
+      test: ["CMD", "ollama", "list"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+      start_period: 15s
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+    restart: unless-stopped
+    mem_limit: 8g
+
+  ollama-model-init:
+    image: ollama/ollama:0.40.14
+    container_name: ai-platform-ollama-model-init
+    depends_on:
+      ollama:
+        condition: service_healthy
+    environment:
+      OLLAMA_HOST: "http://ollama:11434"
+      OLLAMA_MODEL: "${OLLAMA_MODEL:-gemma3:12b-it-q4_K_M}"
+    entrypoint: ["/bin/sh", "/scripts/ollama-model-init.sh"]
+    volumes:
+      - ./docker:/scripts:ro
+    restart: "no"
+
+  llm-api:
+    <<: [*app-image, *app-common]
+    container_name: ai-platform-api
+    command: ["python", "-m", "app.entrypoints.api"]
+    ports:
+      - "127.0.0.1:${API_PORT:-8080}:8080"  # yalnizca bu port disariya acilir
+    healthcheck:
+      test:
+        - "CMD"
+        - "python"
+        - "-c"
+        - "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://localhost:8080/health/ready').status==200 else 1)"
+      interval: 15s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+    mem_limit: 512m
+    cpus: 1.0
+
+  ai-worker:
+    <<: [*app-image, *app-common]
+    container_name: ai-platform-worker
+    command: ["python", "-m", "app.entrypoints.worker"]
+    depends_on:
+      kafka:
+        condition: service_healthy
+      ollama:
+        condition: service_healthy
+    healthcheck:
+      test:
+        - "CMD"
+        - "python"
+        - "-c"
+        - "import urllib.request; urllib.request.urlopen('http://localhost:9100/metrics')"
+      interval: 20s
+      timeout: 5s
+      retries: 6
+      start_period: 15s
+    mem_limit: 1g
+    cpus: 2.0
+
+  outbox-publisher:
+    <<: [*app-image, *app-common]
+    container_name: ai-platform-outbox-publisher
+    command: ["python", "-m", "app.entrypoints.outbox_publisher"]
+    depends_on:
+      kafka:
+        condition: service_healthy
+    mem_limit: 512m
+    cpus: 1.0
+
+  retry-dispatcher:
+    <<: [*app-image, *app-common]
+    container_name: ai-platform-retry-dispatcher
+    command: ["python", "-m", "app.entrypoints.retry_dispatcher"]
+    mem_limit: 512m
+    cpus: 0.5
+
+volumes:
+  kafka_data:
+  ollama_models:

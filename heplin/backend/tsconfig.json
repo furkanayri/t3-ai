@@ -1,0 +1,24 @@
+{
+  "ts-node": {
+    "files": true,
+    "require": ["tsconfig-paths/register"]
+  },
+  "files": ["./server.ts", "./types/index.d.ts"],
+  "compilerOptions": {
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "target": "es6",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "outDir": "./build",
+    "baseUrl": ".", // This must be set
+    "paths": {
+      "@/*": ["./*"]
+    },
+    "skipLibCheck": true
+  },
+  "include": ["./**/*.ts", "./flow-config.json", "./node-config.json"],
+  "exclude": ["node_modules"],
+  "lib": ["es2015"]
+}

@@ -1,0 +1,248 @@
+export const tenants = [
+  {
+    _id: '1',
+    company: {
+      name: 'Google',
+      logo: 'https://file.notion.so/f/f/01e227b9-a6c8-4c44-a9a6-e0cf8f50a01e/cebd599f-4a7e-42a7-be0a-4e1f8f5c0a1d/Untitled.png?id=5fba9e7d-258e-4557-97ab-379cf28b8fcf&table=block&spaceId=01e227b9-a6c8-4c44-a9a6-e0cf8f50a01e&expirationTimestamp=1695254400000&signature=7vrEjOjhpjzrHLhNfa2IjcVbDJ5OExaUg7SmOOZB78Y&downloadName=Untitled.png',
+    },
+    plan: 'Basic',
+    position: 'Software Engineer',
+    title: 'Software Engineer Job Opening',
+    content:
+      "<p>Google is looking for software engineers. Don't miss this unique opportunity to work with one of the world's largest technology companies!</p>",
+    requirements:
+      "<ul><li>Bachelor's degree in computer engineering or a related field</li><li>Proficiency in programming languages</li><li>Problem-solving skills</li></ul>",
+    appliedStatus: 'waiting',
+    appliedDate: '2023-09-19',
+    country: 'United States',
+    district: 'Silicon Valley',
+    city: 'Mountain View',
+    department: {
+      name: 'Software Development',
+    },
+    jobType: 'fulltime',
+    locationType: 'onsite',
+    status: 'active',
+  },
+  {
+    _id: '2',
+    company: {
+      name: 'Microsoft',
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Microsoft_logo.svg/2048px-Microsoft_logo.svg.png',
+    },
+    plan: 'Pro',
+
+    position: 'Software Developer',
+    title: 'Software Developer Job Opening',
+    content:
+      '<p>Microsoft is hiring software developers. Be a part of innovation at the heart of technology!</p>',
+    requirements:
+      "<ul><li>Bachelor's degree in computer science or a related field</li><li>Proficiency in Microsoft technologies</li><li>Strong communication skills</li></ul>",
+    appliedStatus: 'waiting',
+    appliedDate: '2023-09-18',
+    country: 'United States',
+    district: 'Redmond',
+    city: 'Washington',
+    department: {
+      name: 'Software Development',
+    },
+    jobType: 'fulltime',
+    locationType: 'onsite',
+    status: 'active',
+  },
+  {
+    _id: '3',
+    plan: 'Pro',
+    company: {
+      name: 'Apple',
+      logo: 'https://1000logos.net/wp-content/uploads/2016/10/Apple-Logo.png',
+    },
+    position: 'Mobile App Developer',
+    title: 'Mobile App Developer Job Opening',
+    content: '<p>Apple is looking for mobile app developers. Be a pioneer of innovation!</p>',
+    requirements:
+      "<ul><li>Bachelor's degree in computer engineering or a related field</li><li>Experience in iOS or Android app development</li><li>Creative thinking skills</li></ul>",
+    appliedStatus: 'cv_download',
+    appliedDate: '2023-09-17',
+    country: 'United States',
+    district: 'Cupertino',
+    city: 'California',
+    department: {
+      name: 'Mobile App Development',
+    },
+    jobType: 'fulltime',
+    locationType: 'onsite',
+    status: 'active',
+  },
+  {
+    _id: '4',
+    plan: 'Enterprise',
+    company: {
+      name: 'Amazon Web Services',
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/1200px-Amazon_Web_Services_Logo.svg.pnghttps://www.example.com/aws-logo.png',
+    },
+    position: 'Cloud Solutions Architect',
+    title: 'Cloud Solutions Architect Job Opening',
+    content:
+      "<p>Amazon Web Services is hiring cloud solutions architects. Here's a great opportunity for you!</p>",
+    requirements:
+      "<ul><li>Bachelor's or master's degree in computer science or a related field</li><li>AWS certification is a plus</li><li>Experience in infrastructure design</li></ul>",
+    appliedStatus: 'seen',
+    appliedDate: '2023-09-16',
+    country: 'United States',
+    district: 'Seattle',
+    city: 'Washington',
+    department: {
+      name: 'Cloud Architecture',
+    },
+    jobType: 'fulltime',
+    locationType: 'onsite',
+    status: 'active',
+  },
+  {
+    _id: '5',
+    plan: 'Enterprise',
+    status: 'freeze',
+    company: {
+      name: 'Meta',
+      logo: 'https://1000logos.net/wp-content/uploads/2021/10/logo-Meta.png',
+    },
+    position: 'Data Scientist',
+    title: 'Data Scientist Job Opening',
+    content: '<p>Facebook is looking for data scientists. Apply to innovate with data!</p>',
+    requirements:
+      "<ul><li>Bachelor's or master's degree in statistics or data science</li><li>Experience in data analysis</li><li>Proficiency in Python or R</li></ul>",
+    appliedStatus: 'cv_download',
+    appliedDate: '2023-09-15',
+    country: 'United States',
+    district: 'Menlo Park',
+    city: 'California',
+    department: {
+      name: 'Data Science',
+    },
+    jobType: 'fulltime',
+    locationType: 'onsite',
+  },
+  {
+    _id: '6',
+    plan: 'Basic',
+    company: {
+      name: 'Netflix',
+      logo: 'https://w7.pngwing.com/pngs/723/883/png-transparent-netflix-app-logo-tech-companies-thumbnail.png',
+    },
+    position: 'UI/UX Designer',
+    title: 'UI/UX Designer Job Opening',
+    content: '<p>Netflix is hiring UI/UX designers. Shape the user experience!</p>',
+    requirements:
+      "<ul><li>Bachelor's degree in graphic design or a related field</li><li>Experience in UI/UX design</li><li>Proficiency in Adobe Creative Suite</li></ul>",
+    appliedStatus: 'waiting',
+    appliedDate: '2023-09-14',
+    country: 'United States',
+    district: 'Los Gatos',
+    city: 'California',
+    department: {
+      name: 'Design',
+    },
+    jobType: 'fulltime',
+    locationType: 'onsite',
+    status: 'active',
+  },
+  {
+    _id: '7',
+    plan: 'Basic',
+
+    company: {
+      name: 'Tesla',
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/e/e8/Tesla_logo.png',
+    },
+    position: 'Automotive Engineer',
+    title: 'Automotive Engineer Job Opening',
+    content: '<p>Tesla is looking for automotive engineers. Shape the future!</p>',
+    requirements:
+      "<ul><li>Bachelor's degree in automotive engineering or a related field</li><li>Interest and knowledge in electric vehicles</li><li>Experience in automotive design</li></ul>",
+    appliedStatus: 'waiting',
+    appliedDate: '2023-09-13',
+    country: 'United States',
+    district: 'Palo Alto',
+    city: 'California',
+    department: {
+      name: 'Engineering',
+    },
+    jobType: 'fulltime',
+    locationType: 'onsite',
+    status: 'disabled',
+  },
+  {
+    _id: '8',
+    plan: 'Pro',
+
+    company: {
+      name: 'Adobe',
+      logo: 'https://static.cdnlogo.com/logos/a/90/adobe.png',
+    },
+    position: 'Graphic Designer',
+    title: 'Graphic Designer Job Opening',
+    content: '<p>Adobe is looking for graphic designers. Apply to work on creative projects!</p>',
+    requirements:
+      "<ul><li>Bachelor's degree in graphic design or a related field</li><li>Proficiency in Adobe Creative Suite</li><li>Strong communication skills</li></ul>",
+    appliedStatus: 'seen',
+    appliedDate: '2023-09-12',
+    country: 'United States',
+    district: 'San Jose',
+    city: 'California',
+    department: {
+      name: 'Design',
+    },
+    jobType: 'fulltime',
+    locationType: 'onsite',
+    status: 'active',
+  },
+  {
+    _id: '9',
+    plan: 'Basic',
+    company: {
+      name: 'IBM',
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/IBM_logo.svg/2560px-IBM_logo.svg.png',
+    },
+    position: 'Database Administrator',
+    title: 'Database Administrator Job Opening',
+    content: '<p>IBM is looking for database administrators. Manage big data!</p>',
+    requirements:
+      "<ul><li>Bachelor's degree in computer science or a related field</li><li>Experience in database administration</li><li>SQL knowledge</li></ul>",
+    appliedStatus: 'waiting',
+    appliedDate: '2023-09-11',
+    country: 'United States',
+    district: 'Armonk',
+    city: 'New York',
+    department: {
+      name: 'Database Management',
+    },
+    jobType: 'fulltime',
+    locationType: 'onsite',
+    status: 'active',
+  },
+  {
+    _id: '10',
+    plan: 'Basic',
+    company: {
+      name: 'Intel',
+      logo: 'https://1000logos.net/wp-content/uploads/2021/05/Intel-logo.png',
+    },
+    position: 'Hardware Engineer',
+    title: 'Hardware Engineer Job Opening',
+    content: '<p>Intel is hiring hardware engineers. Be at the heart of technology!</p>',
+    requirements:
+      "<ul><li>Bachelor's degree in electrical engineering or a related field</li><li>Experience in hardware design</li><li>Interest in technology</li></ul>",
+    appliedStatus: 'cv_download',
+    appliedDate: '2023-09-10',
+    country: 'United States',
+    district: 'Santa Clara',
+    city: 'California',
+    department: {
+      name: 'Engineering',
+    },
+    jobType: 'fulltime',
+    locationType: 'onsite',
+    status: 'active',
+  },
+];

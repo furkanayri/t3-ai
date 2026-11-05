@@ -1,0 +1,17 @@
+# GPU override: yalnizca Ollama'ya NVIDIA GPU erisimi ekler.
+#
+# Kullanim:
+#   docker compose -f docker-compose.yml -f docker-compose.gpu.yml up -d
+#
+# GPU yoksa bu dosyayi kullanmayin; temel compose CPU ile calisir
+# (gelistirme ortami icin yavas olabilir).
+
+services:
+  ollama:
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: ["gpu"]

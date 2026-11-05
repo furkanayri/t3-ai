@@ -1,0 +1,44 @@
+# Ortam degiskenleri (gercek secret'lar repoya girmez)
+.env
+.env.local
+.env.*.local
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Sanal ortamlar
+.venv/
+venv/
+ENV/
+env/
+
+# Test / arac ciktilari
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+coverage.xml
+
+# Yuk testi ciktilari
+loadtest/reports/
+.local-runs/
+
+# IDE / OS
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Loglar
+*.log
+logs/

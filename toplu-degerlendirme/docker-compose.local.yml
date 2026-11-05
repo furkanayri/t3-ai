@@ -1,0 +1,128 @@
+name: heplin-video-evaluation-local
+
+services:
+  localstack:
+    image: localstack/localstack:3.8.1
+    container_name: heplin-localstack
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:4566:4566"
+    environment:
+      SERVICES: sqs
+      AWS_DEFAULT_REGION: ${AWS_REGION:-eu-west-1}
+      SQS_QUEUE_NAME: ${SQS_QUEUE_NAME:-VideoJobQueueLocal}
+      SQS_DLQ_NAME: ${SQS_DLQ_NAME:-VideoJobQueueLocalDLQ}
+      COMPARISON_SQS_QUEUE_NAME: ${COMPARISON_SQS_QUEUE_NAME:-VideoComparisonQueueLocal}
+      COMPARISON_SQS_DLQ_NAME: ${COMPARISON_SQS_DLQ_NAME:-VideoComparisonQueueLocalDLQ}
+      DEBUG: "0"
+    volumes:
+      - localstack_data:/var/lib/localstack
+      - ./localstack-init:/etc/localstack/init/ready.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fs http://localhost:4566/_localstack/health | grep -q '\"sqs\"' "]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+      start_period: 10s
+
+  worker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: heplin-video-worker
+    restart: "no"
+    env_file:
+      - .env.local
+    environment:
+      MONGO_URI: mongodb://host.docker.internal:27018/heplin-local
+      MONGO_DB_NAME: heplin-local
+      SQS_ENDPOINT_URL: http://localstack:4566
+      LOCAL_VIDEO_DIR: /videos-source
+      WORK_DIR: /app/videos
+    depends_on:
+      localstack:
+        condition: service_healthy
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    gpus: all
+    volumes:
+      - ../heplin/backend/.local-uploads:/videos-source:ro
+      - worker_videos:/app/videos
+      - ollama_cache:/root/.ollama
+      - whisper_cache:/root/.cache/huggingface
+
+  job-pusher:
+    build:
+      context: .
+      dockerfile: Dockerfile.pusher
+    profiles: ["tools"]
+    env_file:
+      - .env.local
+    environment:
+      MONGO_URI: mongodb://host.docker.internal:27018/heplin-local
+      MONGO_DB_NAME: heplin-local
+      SQS_ENDPOINT_URL: http://localstack:4566
+      ANSWER_ID: ${npm_config_answer_id:-}
+      FILE_KEY: ${npm_config_file_key:-}
+      CANDIDATE_ANSWER_ID: ${npm_config_candidate_answer_id:-}
+      CLI_MAX_JOBS: ${npm_config_max_jobs:-}
+      DRY_RUN: ${npm_config_dry_run:-false}
+      FORCE_PUSH: ${npm_config_force:-false}
+    depends_on:
+      localstack:
+        condition: service_healthy
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  comparison-worker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    profiles: ["compare"]
+    restart: "no"
+    env_file:
+      - .env.local
+    environment:
+      RESULT_MODE: file
+      RUN_ID: ${COMPARE_RUN_ID:-not-started}
+      RUNS_DIR: /app/.local-runs
+      SQS_ENDPOINT_URL: http://localstack:4566
+      SQS_QUEUE_NAME: ${COMPARISON_SQS_QUEUE_NAME:-VideoComparisonQueueLocal}
+      VIDEO_SOURCE: local
+      LOCAL_VIDEO_DIR: /videos-source
+      WORK_DIR: /app/videos
+      MAX_VIDEOS_TO_PROCESS: ${COMPARE_MAX_VIDEOS:-1}
+    depends_on:
+      localstack:
+        condition: service_healthy
+    gpus: all
+    volumes:
+      - ${COMPARE_SOURCE_DIR:-../heplin/backend/.local-uploads}:/videos-source:ro
+      - ./.local-runs:/app/.local-runs
+      - worker_videos:/app/videos
+      - ollama_cache:/root/.ollama
+      - whisper_cache:/root/.cache/huggingface
+
+  dashboard:
+    build:
+      context: .
+      dockerfile: Dockerfile.dashboard
+    profiles: ["compare"]
+    container_name: heplin-comparison-dashboard
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:4180:4180"
+    volumes:
+      - ./.local-runs:/runs:ro
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:4180/', timeout=2)"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+      start_period: 3s
+
+volumes:
+  localstack_data:
+  worker_videos:
+  ollama_cache:
+  whisper_cache:

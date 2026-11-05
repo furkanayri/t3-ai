@@ -1,0 +1,8 @@
+html
+  head
+    title Login
+  body
+    form(method="POST" action="/sendSmsOtp")
+      label(for="phoneNumber") Phone Number:
+      input(type="tel" name="phoneNumber" required)
+      button(type="submit") Login

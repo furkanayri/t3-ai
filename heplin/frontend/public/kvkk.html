@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>KVKK Aydınlatma ve Açık Rıza Metni</title>
+<style>
+  body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #f5f8fa;
+    margin: 0; padding: 0;
+    color: #222;
+  }
+  .container {
+    max-width: 1000px;
+    margin: 30px auto;
+    background: #fff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  }
+  h1, h2, h3 {
+    color: #350902;
+  }
+  h1 {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  .logo-container {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  .logo-container img {
+    max-width: 200px;
+    height: auto;
+  }
+  p, li {
+    line-height: 1.6;
+  }
+  ul {
+    margin-left: 25px;
+  }
+  strong {
+    color: #333;
+  }
+  a {
+    color: #004aad;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  input[type="checkbox"] {
+    transform: scale(1.3);
+    margin-right: 10px;
+  }
+  label {
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    margin-top: 25px;
+    cursor: pointer;
+  }
+  .hidden {
+    display: none;
+  }
+  .tab-container {
+    margin-bottom: 30px;
+    border-bottom: 2px solid #eee;
+  }
+  .tab-buttons {
+    display: flex;
+    gap: 0;
+    flex-wrap: wrap;
+  }
+  .tab-btn {
+    background: #f5f8fa;
+    color: #666;
+    border: none;
+    padding: 15px 25px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    margin-right: 5px;
+    transition: all 0.3s;
+    border-bottom: 2px solid transparent;
+  }
+  .tab-btn:hover {
+    background: #e8f0f5;
+    color: #004aad;
+  }
+  .tab-btn.active {
+    background: #fff;
+    color: #004aad;
+    border-bottom: 2px solid #004aad;
+  }
+  .tab-content {
+    display: none;
+  }
+  .tab-content.active {
+    display: block;
+  }
+  .close-btn {
+    background: #004aad;
+    color: #fff;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  .download-btn {
+    background: #004aad;
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 20px 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    transition: background 0.3s;
+  }
+  .download-btn:hover {
+    background: #003a8d;
+  }
+  .download-btn:active {
+    transform: scale(0.98);
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 15px;
+  }
+  table th, table td {
+    border: 1px solid #bbb;
+    padding: 10px;
+    text-align: left;
+  }
+  hr {
+    border: none;
+    border-top: 2px solid #eee;
+    margin: 40px 0;
+  }
+  @media (max-width: 600px) {
+    .container {
+      padding: 20px;
+    }
+    h1 {
+      font-size: 18px;
+      margin-bottom: 25px;
+    }
+    h2 {
+      font-size: 16px;
+    }
+    h3 {
+      font-size: 15px;
+    }
+    .tab-btn {
+      flex: 1;
+      padding: 12px 8px;
+      font-size: 13px;
+      text-align: center;
+      min-width: 0;
+    }
+    .tab-buttons {
+      gap: 2px;
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo-container">
+      <img src="/assets/t3-logo.png" alt="Logo" />
+    </div>
+    <h1>KİŞİSEL VERİLERİN İŞLENMESİNE İLİŞKİN BİLGİLENDİRME VE ONAY METNİ<br></h1>
+
+    <div class="tab-container">
+      <div class="tab-buttons">
+        <button class="tab-btn active" data-tab="aydinlatma">Aydınlatma Metni</button>
+        <button class="tab-btn" data-tab="rizabeyani">Açık Rıza Metni</button>
+        <button class="tab-btn" data-tab="veritalebi">Veri Talebi Formu</button>
+      </div>
+    </div>
+
+    <div id="aydinlatma" class="tab-content active">
+    <div id="aydinlatma-tr" class="language-content">
+        <h2>KİŞİSEL VERİLERİN İŞLENMESİNE İLİŞKİN AYDINLATMA METNİ</h2>
+
+        <h3>1. Veri Sorumlusu</h3>
+        <p>6698 sayılı Kişisel Verilerin Korunması Kanunu (Kanun) uyarınca, veri sorumlusu sıfatıyla hareket eden <strong>Türkiye Teknoloji Takımı Vakfı (T3 Vakfı)</strong>, Kanunun aydınlatma yükümlülüğünü düzenleyen 10 uncu maddesi kapsamında kişisel verilerini işledikleri ilgili kişileri belirli konularda bilgilendirmekle yükümlüdür.</p>
+        <p>İşlenen kişisel veriler nedeniyle <strong>Türkiye Teknoloji Takımı Vakfı (T3 Vakfı)</strong> veri sorumlusu olup iletişim bilgileri aşağıdaki gibidir:</p>
+        <ul>
+          <li><strong>Unvan:</strong> <strong>Türkiye Teknoloji Takımı Vakfı (T3 Vakfı)</strong></li>
+          <li><strong>Merkezi Sicil No:</strong> 6196</li>
+          <li><strong>Vergi Kimlik No:</strong> 8790665495</li>
+          <li><strong>Adres:</strong> Ünalan Mahallesi Ayazma Caddesi No:3 34700 Üsküdar/İstanbul</li>
+          <li><strong>E-posta:</strong> iletisim@t3vakfi.org</li>
+          <li><strong>Web Sitesi:</strong> <a href="https://t3vakfi.org/tr/" target="_blank" rel="noopener">https://t3vakfi.org/tr/</a></li>
+    </ul>
+
+        <h3>2. Kişisel Verilerin İşlenme Amacı</h3>
+        <p>Kurumumuz, kişisel verilerinizi aşağıdaki amaçlarla işlemektedir:</p>
+        <ul>
+          <li>Hizmetlerimizin sunulması ve geliştirilmesi,</li>
+          <li>Müşteri ilişkileri yönetimi ve iletişim,</li>
+          <li>Güvenlik önlemlerinin alınması,</li>
+          <li>Yasal yükümlülüklerin yerine getirilmesi,</li>
+          <li>İnsan kaynakları süreçlerinin yürütülmesi,</li>
+          <li>Bulut tabanlı altyapıların sağlanması ve yönetimi,</li>
+          <li>Yapay zekâ destekli analiz ve içerik üretimi,</li>
+          <li>Teknik destek, bakım, yedekleme ve sistem sürekliliğinin sağlanması.</li>
+    </ul>
+
+        <h3>3. İşlenen Kişisel Veri Kategorileri</h3>
+        <p>İşlenen kişisel verileriniz şunları içerebilir:</p>
+        <ul>
+          <li>Kimlik bilgileri (ad, soyad, T.C. kimlik numarası, doğum tarihi vb.),</li>
+          <li>İletişim bilgileri (telefon, e-posta, adres, IP adresi vb.),</li>
+          <li>Mesleki bilgiler (özgeçmiş, eğitim, iş deneyimi vb.),</li>
+          <li>Teknik veriler (cihaz bilgisi, erişim ve kullanım kayıtları vb.),</li>
+          <li>Görsel ve işitsel veriler (fotoğraf, kamera kaydı vb.),</li>
+          <li>Davranışsal veriler (hizmet kullanımı, sistem etkileşimleri vb.).</li>
+    </ul>
+
+        <h3>4. Kişisel Verilerin İşlenme ve Saklanma Yöntemi</h3>
+        <p>Kişisel verileriniz, ilgili mevzuata uygun olarak elektronik veya fiziki ortamda toplanmakta, işlenmekte ve saklanmaktadır. Verileriniz güvenlik tedbirleri çerçevesinde korunmakta, yetkisiz erişime karşı gerekli önlemler alınmaktadır.</p>
+
+        <h3>5. Kişisel Verilerin Aktarımı</h3>
+        <p>Kurumumuz, kişisel verilerinizi bilme gereği ve kullanma gereği ilkelerine uygun olarak, veri minimizasyonu sağlayarak ve gerekli teknik ve idari güvenlik tedbirlerini alarak işlemeye özen göstermektedir. İş faaliyetlerinin yürütülmesi veya denetimi ile iş sürekliliğinin sağlanması farklı paydaşlarla sürekli veri akışını zaruri kıldığı için işlediğimiz kişisel verileri belirli amaçlarla üçüncü kişilerle aktarmak durumundayız.</p>
+        <p>Kişisel verileriniz, yukarıda belirtilen amaçların gerçekleştirilmesi doğrultusunda ve bu amaçların yerine getirilmesi ile sınırlı olarak; kurum dışı avukat, danışmanlık ve hizmet sağlayıcılarımız, bilişim altyapımızı sağlayan, işleten veya hizmet sunan iş ortaklarımız ile diğer üçüncü kişiler, mahkemeler, savcılıklar, icra müdürlükleri, adli ve idari soruşturma makamları ve kişisel verilerinizi talep etmeye yetkili olan diğer kamu kurum veya kuruluşlarına işbu aydınlatma metninde belirtilen amaçlarla ve hukuki sebeplerle sınırlı olarak yurt içine ve yurt dışına aktarılabilecektir.</p>
+        <ul>
+          <li>Türkiye'de bulunan iş ortakları, danışmanlar ve hizmet sağlayıcılar,</li>
+          <li>AWS, Cloudflare, MongoDB Atlas gibi yurt dışı altyapı ve bulut servis sağlayıcıları,</li>
+          <li>OpenAI, Google Gemini gibi yapay zekâ servis sağlayıcıları,</li>
+          <li>Kanun gereği yetkili kamu kurumları ve düzenleyici otoriteler.</li>
+        </ul>
+        <p><strong>Yurtdışına Veri Aktarımı:</strong> Kişisel verileriniz, diğer ülkelerdeki sunuculara aktarılabilir. Bu kapsamda, Kanun'un 5 ve 6 ncı maddelerinde belirtilen veri işleme şartlarından herhangi biri mevcut ise ve aktarım yapılacak ülkede ilgili kişilerin haklarını kullanabilme ve etkili yasal çözümlere başvurabilme imkanı olması halinde uygun güvenceler (bağlayıcı şirket kuralları, standart sözleşme, yazılı taahhütname) sağlanması şartıyla veri sorumlusu veya veri işleyen tarafından aktarılabilecektir.</p>
+
+        <h3>6. Kişisel Verilerin Saklanma Süresi</h3>
+        <p>Verileriniz, işleme amaçlarının devam ettiği sürece ve mevzuatta belirlenen saklama süreleri boyunca muhafaza edilir. İşleme amacı sona erdiğinde veya yasal saklama süresi dolduğunda verileriniz silinir, yok edilir veya anonim hale getirilir.</p>
+
+        <h3>7. Kişisel Veri Sahibinin Hakları</h3>
+        <p>KVKK'nın 11. maddesi uyarınca kişisel veri sahipleri olarak;</p>
+        <ul>
+          <li>Kişisel verilerinizin işlenip işlenmediğini öğrenme,</li>
+          <li>Kişisel verileriniz işlenmişse buna ilişkin bilgi talep etme,</li>
+          <li>Kişisel verilerin işlenme amacını ve bunların amacına uygun kullanılıp kullanılmadığını öğrenme,</li>
+          <li>Yurt içinde veya yurt dışında kişisel verilerin aktarıldığı üçüncü kişileri bilme,</li>
+          <li>Kişisel verilerin eksik veya yanlış işlenmiş olması hâlinde bunların düzeltilmesini isteme,</li>
+          <li>KVKK'da öngörülen şartlar çerçevesinde kişisel verilerin silinmesini veya yok edilmesini isteme,</li>
+          <li>Düzeltme, silme ve yok etme işlemlerinin kişisel verilerin aktarıldığı üçüncü kişilere bildirilmesini isteme,</li>
+          <li>İşlenen verilerin münhasıran otomatik sistemler vasıtasıyla analiz edilmesi suretiyle kişinin kendisi aleyhine bir sonucun ortaya çıkmasına itiraz etme,</li>
+          <li>Kişisel verilerin kanuna aykırı olarak işlenmesi sebebiyle zarara uğraması hâlinde zararın giderilmesini talep etme.</li>
+        </ul>
+        <p>Haklarına sahiptir.</p>
+        <p>Bu haklarınızı kullanmak için iletisim@t3vakfi.org adresi üzerinden veya yazılı olarak İlgili Kişi Başvuru Formu belgesini doldurarak kurumumuza başvurabilirsiniz.</p>
+
+        <h3>8. Veri Güvenliği ve Teknik Önlemler</h3>
+        <p>Verilerinizin güvenliği için aşağıdaki önlemler uygulanmaktadır:</p>
+        <ul>
+          <li>AES-256 gibi güçlü şifreleme standartları,</li>
+          <li>Çok faktörlü kimlik doğrulama (MFA),</li>
+          <li>Erişim kontrol ve kayıt sistemleri,</li>
+          <li>Veri işleme sözleşmeleri (DPA) ile yasal güvence,</li>
+          <li>Veri minimizasyonu ve anonimleştirme teknikleri.</li>
+      </ul>
+
+        <h3>9. Açık Rıza ve İstisnai Durumlar</h3>
+        <p>Kişisel verileriniz, açık rızanız veya KVKK'da belirtilen yasal sebepler (kanunlarda öngörülmüş olması, sözleşmenin kurulması ve ifası, yasal yükümlülük, ilgili kişi tarafından alenileştirilmesi, hakkın tesisi, kullanılması veya korunması ve meşru menfaat temelleri) kapsamında işlenmektedir. Rızanızı istediğiniz zaman geri çekme hakkına sahipsiniz; ancak bu geri çekme işlemi, önceden işlenmiş veriler için geçerli olmayabilir.</p>
+
+        <h3>Rızanın Geri Alınması</h3>
+        <p>Veri işleme faaliyetlerine dair vermiş olduğunuz açık rızanızı dilediğiniz zaman geri alma hakkına sahipsiniz. Rızanızı geri çekmek isterseniz, aşağıdaki yöntemlerden herhangi biriyle bizimle iletişime geçebilirsiniz:</p>
+        <ul>
+          <li>Yazılı olarak veri sorumlusuna başvurarak,</li>
+          <li>Web sitemizdeki İlgili Kişi Başvuru Formu aracılığıyla başvurarak.</li>
+        </ul>
+        <p>Tarafımıza iletilen rıza geri çekme talepleri, kimlik doğrulaması sağlandıktan sonra yasal süreler içinde işleme alınacaktır. Rızanızı geri almanız, bu işlemden önce gerçekleştirilen veri işleme faaliyetlerinin hukuka uygunluğunu etkilemez. Rızanızı geri çektiğiniz takdirde ilgili veri işleme faaliyetlerini durduracak ve mümkün olan en kısa sürede bu verileri sileceğiz veya anonim hale getireceğiz.</p>
+
+        <h3>10. Veri İhlali Durumunda Bilgilendirme</h3>
+        <p>Olası veri ihlali durumunda, şirketimiz KVKK Kurumu ve ilgili kişileri en geç 72 saat içinde bilgilendirir. Gerekli görülmesi halinde, iş birliği yaptığımız uluslararası servis sağlayıcıları da bu süreçte bilgilendirilebilir.</p>
+
+        <h3>11. İletişim</h3>
+        <p>KVKK kapsamında haklarınızı kullanmak, sorularınızı iletmek veya bilgi almak için aşağıdaki iletişim kanallarını kullanabilirsiniz:</p>
+        <ul>
+          <li><strong>Türkiye Teknoloji Takımı Vakfı (T3 Vakfı)</strong></li>
+          <li><strong>E-posta:</strong> iletisim@t3vakfi.org</li>
+          <li><strong>Adres:</strong> Ünalan Mahallesi Ayazma Caddesi No:3 34700 Üsküdar/İstanbul</li>
+          <li><strong>Telefon:</strong> 0 (212) 501 94 34</li>
+    </ul>
+
+    <p style="text-align: center; margin-top: 30px;">
+      <a href="https://cdn.t3kys.com/media/uploads/2023/07/12/T3_Foundation_PDPL_Clarification_Text.pdf" target="_blank" class="download-btn" style="display: inline-block;">
+        📄 English Version (PDPL Clarification Text)
+      </a>
+    </p>
+    </div>
+    </div>
+
+    <div id="rizabeyani" class="tab-content">
+      <h2>KİŞİSEL VERİLERİN İŞLENMESİNE İLİŞKİN AÇIK RIZA METNİ</h2>
+
+      <p>6698 sayılı Kişisel Verilerin Korunması Kanunu (“KVKK” veya “Kanun”) nezdinde veri sorumlusu sıfatını haiz <strong>TÜRKİYE TEKNOLOJİ TAKIMI VAKFI (T3 VAKFI)</strong> tarafından iletilen Aydınlatma Metni ile tarafıma işlenecek kişisel veriler, işlenme amaçları, aktarılacağı kişi/kurumlar, toplanma yöntemleri ve hukuki sebepler ile sahip olduğum haklar ayrıntılı ve kapsamlı şekilde anlatılmış, söz konusu Aydınlatma Metni tarafımca okunmuştur.</p>
+
+      <p>Aydınlatma Metni kapsamında Bursiyer Aday Başvuru Formu vasıtasıyla paylaştığım Ad-Soyad, Telefon numarası, E-posta adresi, Eğitim durumu, Özgeçmiş ve video mülakat içerikleri (soru yanıt videoları, ses kayıtları) niteliğindeki kişisel verilerimin; <strong>Türkiye Teknoloji Takımı Vakfı (T3 Vakfı)</strong> nezdinde bursiyer seçme ve değerlendirme sürecinin yürütülmesi, adayların yetkinlik ve uygunluk analizlerinin yapılması amacıyla toplanmasına, işlenmesine, saklanmasına, değerlendirilmesine ve Kanunun 9. maddesi ile Kişisel Verilerin Yurt Dışına Aktarılmasına İlişkin Usul ve Esaslar Hakkında Yönetmelik hükümleri uyarınca yurt dışı menşeli bilişim altyapısı hizmeti sağlayıcılarına (örneğin video yükleme, yapay zekâ tabanlı metin analizi veya bulut depolama hizmeti sunan sistemlere) aktarılmasına, ayrıca mahkemeler ve yetkili kamu kurum ve kuruluşları ile gerekli hallerde paylaşılmasına açık rıza ve onay verdiğimi beyan ediyorum.</p>
+
+      <p><strong>Türkiye Teknoloji Takımı Vakfı (T3 VAKFI)</strong> tarafından Kişisel Verilerimin İşlenmesine İlişkin Aydınlatma Metnini ve yukarıdaki bilgileri okuduğumu, anladığımı, kişisel verilerimin işlenmesine ve aktarılmasına bilerek ve isteyerek rıza verdiğimi beyan ederim.</p>
+
+      <p>Adı Soyadı:<br>
+      Tarih:<br>
+      İmza:</p>
+    </div>
+
+    <div id="veritalebi" class="tab-content">
+      <h2>KİŞİSEL VERİ TALEBİ BAŞVURU FORMU</h2>
+      <p>6698 sayılı KVKK'nın 13. maddesi uyarınca kişisel verilerinize ilişkin taleplerinizi aşağıdaki yollarla iletebilirsiniz:</p>
+
+      
+
+      <table>
+        <tr><th>Başvuru Yöntemi</th><th>Adres</th><th>Belirtilecek Bilgi</th></tr>
+        <tr><td>Elden Kimlik Teyitli, Noter vasıtasıyla</td><td><strong>Türkiye Teknoloji Takımı Vakfı</strong><br>Ortamahalle Topkapı Maltepe Caddesi Canayakın Sitesi A blok<br>No: 6 34040 Bayrampaşa / İstanbul</td><td>Zarfın üzerine "Kişisel Verilerin Korunması Kanunu Bilgi Talebi" yazılacaktır.</td></tr>
+        <tr><td>Kayıtlı Elektronik Posta (KEP) Yoluyla</td><td>turkiyeteknolojitakimi@hs01.kep.tr</td><td>E-postanın konu kısmına "Kişisel Verilerin Korunması Kanunu Bilgi Talebi" yazılacaktır.</td></tr>
+      </table>
+
+      <p>Ad Soyad:<br>Tarih:<br>İmza:</p>
+
+      <a href="/kisisel-veri-talebi-formu.pdf" download="KİŞİSEL VERİ TALEBİ BAŞVURU FORMU.pdf" class="download-btn">
+        📥 PDF Formunu İndir
+      </a>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const tabButtons = document.querySelectorAll('.tab-btn');
+      const tabContents = document.querySelectorAll('.tab-content');
+
+      if (tabButtons.length === 0) {
+        console.error('Tab butonları bulunamadı!');
+        return;
+      }
+
+      tabButtons.forEach(button => {
+        if (button) {
+          button.addEventListener('click', () => {
+            const targetTab = button.getAttribute('data-tab');
+            
+            if (!targetTab) {
+              console.error('Tab ID bulunamadı!');
+              return;
+            }
+            
+            // Tüm tab butonlarından active class'ını kaldır
+            tabButtons.forEach(btn => {
+              if (btn) btn.classList.remove('active');
+            });
+            // Tıklanan butona active class'ını ekle
+            button.classList.add('active');
+            
+            // Tüm tab içeriklerini gizle
+            tabContents.forEach(content => {
+              if (content) content.classList.remove('active');
+            });
+            // Hedef tab içeriğini göster
+            const targetContent = document.getElementById(targetTab);
+            if (targetContent) {
+              targetContent.classList.add('active');
+            } else {
+              console.error('Tab içeriği bulunamadı:', targetTab);
+            }
+          });
+        }
+      });
+
+    });
+  </script>
+</body>
+</html>

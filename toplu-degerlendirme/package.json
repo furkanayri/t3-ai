@@ -1,0 +1,38 @@
+{
+  "name": "video-batch-processor",
+  "version": "1.0.0",
+  "description": "Batch video processing system for interview evaluation",
+  "main": "push_jobs.js",
+  "scripts": {
+    "push": "node push_jobs.js",
+    "infra:local": "docker compose -f docker-compose.local.yml up -d localstack",
+    "jobs:list:local": "docker compose -f docker-compose.local.yml --profile tools run --rm --build job-pusher --list",
+    "jobs:push:local": "docker compose -f docker-compose.local.yml --profile tools run --rm --build job-pusher",
+    "worker:local": "docker compose -f docker-compose.local.yml up --build worker",
+    "logs:local": "docker compose -f docker-compose.local.yml logs -f worker",
+    "down:local": "docker compose -f docker-compose.local.yml down",
+    "compare:prepare:local": "node comparison.js prepare",
+    "compare:local": "node comparison.js run",
+    "compare:resume:local": "node comparison.js resume",
+    "compare:dashboard:local": "node comparison.js dashboard",
+    "compare:report:local": "node comparison.js report",
+    "compare:status:local": "node comparison.js status",
+    "compare:down:local": "node comparison.js down",
+    "test": "node --test comparison.test.js"
+  },
+  "keywords": [
+    "video",
+    "batch",
+    "processing",
+    "whisper",
+    "llm",
+    "interview"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@aws-sdk/client-sqs": "^3.490.0",
+    "mongodb": "^6.3.0"
+  }
+}
+

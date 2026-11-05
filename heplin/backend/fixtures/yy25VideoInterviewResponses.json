@@ -1,0 +1,85 @@
+{
+  "interviewName": "YY'25 Video Mülakat Testi",
+  "persona": "Bilgisayar mühendisliği öğrencisi; yapay zeka, otonom sistemler ve yerli teknoloji geliştirme alanlarıyla ilgileniyor.",
+  "voice": "tr-TR-AhmetNeural",
+  "responses": [
+    {
+      "index": 1,
+      "targetLevel": 5,
+      "fileKey": "yy25-answer-01.webm",
+      "answer": "Bence T3 Vakfı, milli teknoloji hamlesini gençlerin katılabildiği somut bir ekosisteme dönüştürüyor. DENEYAP atölyeleriyle erken yaşta teknoloji eğitimi veriyor, burs ve mentorluk programlarıyla öğrencilerin gelişimini destekliyor. TEKNOFEST ise takımların fikirlerini prototipe çevirmesine, çalışmalarını toplumla paylaşmasına ve girişimcilik bağlantıları kurmasına imkan sağlıyor. Vakfın girişim, araştırma ve geliştirme çalışmalarına verdiği destek de yerli ürünlerin ortaya çıkmasını hızlandırıyor. Bu çalışmaların ortak etkisi, yalnızca teknoloji tüketen değil, kritik teknolojileri tasarlayan ve üreten insan kaynağını büyütmek. Bu nedenle vakfın rolünü Türkiye'nin teknolojik bağımsızlığı için eğitim, üretim ve toplumsal farkındalığı bir araya getirmek olarak görüyorum."
+    },
+    {
+      "index": 2,
+      "targetLevel": 4,
+      "fileKey": "yy25-answer-02.webm",
+      "answer": "Gelecekte yapay zeka ve otonom sistemler alanında çalışan bir mühendis olmak istiyorum. Özellikle dışa bağımlılığın yüksek olduğu algılama, karar verme ve güvenli yazılım bileşenlerinde yerli çözümler geliştirmeyi hedefliyorum. Üniversitede bir insansız araç takımında görev alarak bu hedefe küçük bir adım attım ve görüntü işleme tarafında açık kaynak bir modül hazırladım. Uzun vadede geliştirdiğim ürünlerin sanayiye aktarılması ve başka öğrencilerin de projelere katılması, hedeflerimle milli teknoloji hamlesinin kesiştiği nokta. Bunun için teknik uzmanlığımı artırmak, araştırma projelerine katılmak ve daha sonra yerli teknoloji üreten bir ekip kurmak istiyorum; ancak sektör ve ürün yol haritamı henüz ayrıntılandırma aşamasındayım."
+    },
+    {
+      "index": 3,
+      "targetLevel": 3,
+      "fileKey": "yy25-answer-03.webm",
+      "answer": "Gençlerin milli teknoloji hamlesinde önemli bir yeri olduğunu düşünüyorum, çünkü yeni teknolojileri hızlı öğreniyor ve farklı fikirler üretebiliyorlar. Bu konumu güçlendirmek için okullarda daha fazla uygulamalı teknoloji eğitimi verilebilir, öğrencilere laboratuvar imkanı sağlanabilir ve deneyimli kişilerle mentorluk programları kurulabilir. Yarışmalar ve stajlar da gençlerin projelerde görev almasını kolaylaştırır. Böylece daha fazla genç teknoloji geliştirmeye yönelir. Bu çalışmaların nasıl ölçüleceği veya hangi kurumların öncelikli sorumluluk alacağı konusunda ise ayrıntılı bir önerim yok."
+    },
+    {
+      "index": 4,
+      "targetLevel": 2,
+      "fileKey": "yy25-answer-04.webm",
+      "answer": "Milli teknoloji hamlesi sosyal medyada daha fazla paylaşım yapılarak duyurulabilir. Kısa videolar hazırlanabilir ve okullarda bazı etkinlikler düzenlenebilir. Televizyonda başarılı projelerden bahsedilmesi de insanların ilgisini çekebilir. Bu çalışmaların kimlere yönelik olacağı veya nasıl uygulanacağı konusunda özel bir planım bulunmuyor."
+    },
+    {
+      "index": 5,
+      "targetLevel": 1,
+      "fileKey": "yy25-answer-05.webm",
+      "answer": "Takım çalışmasında genellikle kendi fikrimin doğru olduğunu düşünürüm. Diğer arkadaşlar isterlerse düşüncelerini söylerler, fakat karar verirken çoğunlukla kendi önerimi uygularım."
+    },
+    {
+      "index": 6,
+      "targetLevel": 5,
+      "fileKey": "yy25-answer-06.webm",
+      "answer": "Bir sorunla karşılaştığımda önce problemi yeniden üretir ve beklenen sonuçla gerçekleşen sonucu net biçimde yazarım. Ardından log, ölçüm ve kullanıcı geri bildirimlerini toplayarak olası nedenleri küçük parçalara ayırırım. Önceliği kullanıcı etkisi, aciliyet, güvenlik riski ve çözüm maliyetine göre belirlerim. Örneğin takım projemizde otonom aracın bazı görüntülerde şeridi kaybettiğini gördüğümüzde önce veri setini ışık koşullarına göre sınıflandırdım. Veri artırma, eşik ayarı ve model değişikliği seçeneklerini süre ve risk açısından karşılaştırdık. En düşük riskli veri düzenlemesini küçük bir test grubunda denedik, ölçümlerde hata oranı düşünce tüm sisteme uyguladık. Son olarak çözümü belgeleyip aynı problemin tekrarlanmaması için otomatik test ekledim."
+    },
+    {
+      "index": 7,
+      "targetLevel": 4,
+      "fileKey": "yy25-answer-07.webm",
+      "answer": "Önce ekip arkadaşımla sakin ve özel bir görüşme yapar, motivasyon kaybının iş yükü, belirsizlik veya kişisel bir sebepten kaynaklanıp kaynaklanmadığını anlamaya çalışırım. Onu yargılamadan dinler, yaptığı faydalı katkıları hatırlatırım. Ardından işi daha küçük ve ulaşılabilir adımlara bölebilir, kısa vadeli bir hedef belirleyebilir veya ihtiyaç duyduğu konuda birlikte çalışmayı önerebilirim. İlerlemesini takip eder ve tamamladığı adımları ekip içinde görünür kılarım. Bu yaklaşımın destekleyici olduğunu düşünüyorum; yine de her kişinin motivasyon kaynağını ayrı ayrı analiz etmek için her zaman yeterli yöntem geliştiremeyebilirim."
+    },
+    {
+      "index": 8,
+      "targetLevel": 3,
+      "fileKey": "yy25-answer-08.webm",
+      "answer": "Fikirlerimi anlatırken önce ana mesajı kısa bir cümleyle söylemeye, sonra gerekçeleri sıralamaya çalışırım. Teknik bir konuysa örnek, basit bir şema veya kısa bir gösterim kullanırım. Karşımdaki kişinin soru sormasına fırsat verir ve sonunda ne anladığını kontrol ederim. Yazılı iletişimde maddeler halinde ilerlemek de bana yardımcı oluyor. Bununla birlikte bazen fazla ayrıntıya giriyorum ve kullandığım dili dinleyicinin bilgi seviyesine göre yeterince uyarlayamayabiliyorum."
+    },
+    {
+      "index": 9,
+      "targetLevel": 2,
+      "fileKey": "yy25-answer-09.webm",
+      "answer": "Görevi geç tamamladıysam ekipten özür dilerim ve işi bitirmek için daha fazla çalışırım. Tamamladığım kısmı ekibe göndererek gecikmeyi kapatmaya uğraşırım. Sonraki görevde daha dikkatli olacağımı söylerim. Fakat gecikmeyi önceden bildirme veya nedenini analiz edip süreci düzeltme konusunda her zaman düzenli davranmıyorum."
+    },
+    {
+      "index": 10,
+      "targetLevel": 1,
+      "fileKey": "yy25-answer-10.webm",
+      "answer": "Nobel Ödülü'nü bilgisayar alanında almak isterdim. Yapay zekayla insanların yaşadığı büyük bir sorunu çözerdim. Hangi kriz olacağı ve çözümün nasıl çalışacağı konusunda şu anda net bir fikrim yok."
+    },
+    {
+      "index": 11,
+      "targetLevel": 5,
+      "fileKey": "yy25-answer-11.webm",
+      "answer": "En büyük hayalim, afet ve tarım gibi kritik alanlarda kullanılabilecek güvenilir otonom sistemler geliştiren bir araştırma ve ürün merkezi kurmak. Bu hayal, dışa bağımlılığı azaltırken insan hayatını iyileştirecek ürünler ortaya çıkarabilir. İlk adım olarak lisans döneminde yapay zeka ve gömülü sistemlerde uzmanlaşacak, açık kaynak projelere katkı verecek ve bir araştırma laboratuvarında görev alacağım. Yüksek lisansta güvenli otonom karar verme üzerine çalışıp sanayi ortaklarıyla saha denemeleri planlıyorum. Beş yıl içinde küçük bir mühendislik ekibi kurarak ilk ürünü afet sahasında test etmek ve üniversite öğrencileri için mentorluk programı açmak istiyorum. Uzun vadede merkez hem yerli ürün geliştirecek hem de yeni mühendisler yetiştirecek."
+    },
+    {
+      "index": 12,
+      "targetLevel": 3,
+      "fileKey": "yy25-answer-12.webm",
+      "answer": "Bilgisayar mühendisliği alanında ülkemize en çok yerli yapay zeka yazılımları kazandırmak isterim. Özellikle sanayi ve eğitimde kullanılabilecek Türkçe veriyle çalışan sistemlerin dışa bağımlılığı azaltacağını düşünüyorum. Bu alanda kendimi geliştirip yerli projelerde görev almak ve öğrendiklerimi başka gençlerle paylaşmak istiyorum. Böylece hem ekonomik hem teknik bir katkı sağlanabilir. Ancak hangi ürünle başlayacağım, gerekli ortaklıkları nasıl kuracağım ve etkiyi nasıl ölçeceğim konusunda henüz ayrıntılı bir stratejim yok."
+    },
+    {
+      "index": 13,
+      "targetLevel": 1,
+      "fileKey": "yy25-answer-13.webm",
+      "answer": "Türkiye Teknoloji Takımı Vakfının teknolojiyle ilgili çalışmalar yaptığını biliyorum. Burs programına daha çok maddi destek almak için katılmak istiyorum. Programın diğer imkanları ve benden beklenen katkılar hakkında ayrıntılı bilgim bulunmuyor."
+    }
+  ]
+}

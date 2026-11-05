@@ -1,0 +1,12 @@
+html
+  head
+    title Verify OTP
+  body
+    h1 Enter the OTP
+    p The OTP has been sent to #{phoneNumber}
+    form(method="POST" action="/verifySmsOtp")
+      input(type="hidden" name="phoneNumber" value=phoneNumber)
+      div
+        label(for="otpCode") OTP Code:
+        input(type="text" name="otpCode" required)
+      button(type="submit") Submit

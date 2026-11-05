@@ -1,0 +1,12 @@
+FROM python:3.10-slim
+
+WORKDIR /app
+COPY dashboard.py ./
+
+ENV PYTHONUNBUFFERED=1 \
+    RUNS_DIR=/runs \
+    DASHBOARD_HOST=0.0.0.0 \
+    DASHBOARD_PORT=4180
+
+EXPOSE 4180
+CMD ["python", "dashboard.py"]

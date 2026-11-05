@@ -1,0 +1,61 @@
+{
+    "name": "Hitatek",
+    "legalName": "Hitatek A.Ş.",
+    "email": "arcelikinfo@gmail.com",
+    "phone": "05054683717",
+    "website": "https://www.hitatek.com/tr",
+    "address": "Hitatek Yazılım ve Bilişim Sistemleri Ltd. Şti, Üniversiteler Mah. 1596. Cad. Hacettepe 6. AR-GE, C Blok Bina No:66 Kat 8 No:66, 06800 Çankaya/Ankara",
+    "customDomain": "",
+    "logo": "",
+    "description": "Dijital Dünyada Benzersiz Deneyimler Yaratıcılığı ve Teknolojiyi Birleştirerek Etkileyici Çözümler",
+    "parentTenantId": null,
+    "country": "Türkiye",
+    "city": "Ankara",
+    "contacts": [
+        {
+            "name": "Yasin Faruk Kılıç",
+            "email": "yasinfaruk@hitatek.com",
+            "phone": "05054683717"
+        }
+    ],
+    "plan": "pro",
+    "status": "active",
+    "companySize": "201-500",
+    "usageQuotes": [
+        {
+            "type": "email",
+            "remainingFreeCredit": {
+                "credit": 100,
+                "expires": "2024-12-31T23:59:59Z"
+            },
+            "remainingPurchasedCredit": {
+                "credit": 500,
+                "expires": "2024-12-31T23:59:59Z"
+            },
+            "remainingTotalCredit": {
+                "credit": 600
+            }
+        },
+        {
+            "type": "sms",
+            "remainingFreeCredit": {
+                "credit": 50,
+                "expires": "2024-06-30T23:59:59Z"
+            },
+            "remainingPurchasedCredit": {
+                "credit": 200,
+                "expires": "2024-06-30T23:59:59Z"
+            },
+            "remainingTotalCredit": {
+                "credit": 250
+            }
+        }
+    ],
+    "senderMailAddress": "no-reply@applin.io",
+    "hasCareerPage": true,
+    "userName": "Yasin Faruk",
+    "userSurname": "Kılıç",
+    "password": "rambo12345!",
+    "isAcceptedTOS": true,
+    "isAcceptedKVKK": true
+}
