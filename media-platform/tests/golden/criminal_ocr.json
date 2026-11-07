@@ -1,0 +1,791 @@
+{
+  "findings": {
+    "absent_fields": [],
+    "barcodes": [
+      "ADB12345678901"
+    ],
+    "detected_types": [
+      "CRIMINAL_RECORD"
+    ],
+    "document_family": "CRIMINAL_RECORD",
+    "expected_fields": [
+      "archive",
+      "barcode",
+      "birth_date",
+      "birth_place",
+      "criminal",
+      "father_name",
+      "identity",
+      "identity_type",
+      "issue_date",
+      "issue_place",
+      "mother_name",
+      "name",
+      "query_number",
+      "query_purpose",
+      "query_time",
+      "query_type",
+      "registered_location"
+    ],
+    "fields": {
+      "archive": [
+        {
+          "evidence": {
+            "bbox": [
+              40,
+              390,
+              550,
+              405
+            ],
+            "block_id": "b17",
+            "method": "OCR",
+            "page": 1
+          },
+          "reliable": true,
+          "value": "NONE"
+        }
+      ],
+      "archive_text": [
+        {
+          "evidence": {
+            "bbox": [
+              40,
+              390,
+              550,
+              405
+            ],
+            "block_id": "b17",
+            "method": "OCR",
+            "page": 1
+          },
+          "reliable": true,
+          "value": "YUKARIDA KİMLİK BİLGİLERİ BULUNAN ŞAHSIN ADLİ SİCİL ARŞİV KAYDI YOKTUR."
+        }
+      ],
+      "barcode": [
+        {
+          "evidence": {
+            "bbox": [
+              40,
+              50,
+              550,
+              65
+            ],
+            "block_id": "b0",
+            "method": "OCR",
+            "page": 1
+          },
+          "reliable": true,
+          "value": "ADB12345678901"
+        }
+      ],
+      "birth_date": [
+        {
+          "evidence": {
+            "bbox": [
+              40,
+              310,
+              550,
+              325
+            ],
+            "block_id": "b13",
+            "method": "OCR",
+            "page": 1
+          },
+          "reliable": true,
+          "value": "2000-04-03"
+        }
+      ],
+      "birth_place": [
+        {
+          "evidence": {
+            "bbox": [
+              40,
+              310,
+              550,
+              325
+            ],
+            "block_id": "b13",
+            "method": "OCR",
+            "page": 1
+          },
+          "reliable": true,
+          "value": "Örnek Yer/Ülke"
+        }
+      ],
+      "class_level": [],
+      "criminal": [
+        {
+          "evidence": {
+            "bbox": [
+              40,
+              370,
+              550,
+              385
+            ],
+            "block_id": "b16",
+            "method": "OCR",
+            "page": 1
+          },
+          "reliable": true,
+          "value": "NONE"
+        }
+      ],
+      "criminal_text": [
+        {
+          "evidence": {
+            "bbox": [
+              40,
+              370,
+              550,
+              385
+            ],
+            "block_id": "b16",
+            "method": "OCR",
+            "page": 1
+          },
+          "reliable": true,
+          "value": "YUKARIDA KİMLİK BİLGİLERİ BULUNAN KİŞİNİN ADLİ SİCİL KAYDI YOKTUR."
+        }
+      ],
+      "department": [],
+      "education_branch": [],
+      "education_duration": [],
+      "education_field": [],
+      "education_type": [],
+      "faculty": [],
+      "father_name": [
+        {
+          "evidence": {
+            "bbox": [
+              40,
+              290,
+              550,
+              305
+            ],
+            "block_id": "b12",
+            "method": "OCR",
+            "page": 1
+          },
+          "reliable": true,
+          "value": "Örnek Baba"
+        }
+      ],
+      "identity": [
+        {
+          "evidence": {
+            "bbox": [
+              40,
+              250,
+              550,
+              265
+            ],
+            "block_id": "b10",
+            "method": "OCR",
+            "page": 1
+          },
+          "reliable": true,
+          "value": "10000000146"
+        }
+      ],
+      "identity_type": [
+        {
+          "evidence": {
+            "bbox": [
+              40,
+              210,
+              550,
+              225
+            ],
+            "block_id": "b8",
+            "method": "OCR",
+            "page": 1
+          },
+          "reliable": true,
+          "value": "MERNİS"
+        }
+      ],
+      "issue_date": [
+        {
+          "evidence": {
+            "bbox": [
+              40,
+              150,
+              550,
+              165
+            ],
+            "block_id": "b5",
+            "method": "OCR",
+            "page": 1
+          },
+          "reliable": true,
+          "value": "2026-10-20"
+        }
+      ],
+      "issue_place": [
+        {
+          "evidence": {
+            "bbox": [
+              40,
+              150,
+              550,
+              165
+            ],
+            "block_id": "b5",
+            "method": "OCR",
+            "page": 1
+          },
+          "reliable": true,
+          "value": "İNTERNET (www.turkiye.gov.tr)"
+        }
+      ],
+      "mother_name": [
+        {
+          "evidence": {
+            "bbox": [
+              40,
+              290,
+              550,
+              305
+            ],
+            "block_id": "b12",
+            "method": "OCR",
+            "page": 1
+          },
+          "reliable": true,
+          "value": "Örnek Anne"
+        }
+      ],
+      "name": [
+        {
+          "evidence": {
+            "bbox": [
+              40,
+              270,
+              550,
+              285
+            ],
+            "block_id": "b11",
+            "method": "OCR",
+            "page": 1
+          },
+          "reliable": true,
+          "value": "Örnek İsim Soyisim"
+        }
+      ],
+      "nationality": [],
+      "program": [],
+      "query_number": [
+        {
+          "evidence": {
+            "bbox": [
+              40,
+              130,
+              550,
+              145
+            ],
+            "block_id": "b4",
+            "method": "OCR",
+            "page": 1
+          },
+          "reliable": true,
+          "value": "0000-2026-1234567890"
+        }
+      ],
+      "query_purpose": [
+        {
+          "evidence": {
+            "bbox": [
+              40,
+              190,
+              550,
+              205
+            ],
+            "block_id": "b7",
+            "method": "OCR",
+            "page": 1
+          },
+          "reliable": true,
+          "value": "Örnek kurum"
+        }
+      ],
+      "query_time": [
+        {
+          "evidence": {
+            "bbox": [
+              40,
+              130,
+              550,
+              145
+            ],
+            "block_id": "b4",
+            "method": "OCR",
+            "page": 1
+          },
+          "reliable": true,
+          "value": "13:42"
+        }
+      ],
+      "query_type": [
+        {
+          "evidence": {
+            "bbox": [
+              40,
+              170,
+              550,
+              185
+            ],
+            "block_id": "b6",
+            "method": "OCR",
+            "page": 1
+          },
+          "reliable": true,
+          "value": "DİĞER"
+        }
+      ],
+      "registered_location": [
+        {
+          "evidence": {
+            "bbox": [
+              40,
+              330,
+              550,
+              345
+            ],
+            "block_id": "b14",
+            "method": "OCR",
+            "page": 1
+          },
+          "reliable": true,
+          "value": "Örnek İl"
+        }
+      ],
+      "registration_date": [],
+      "scholarship_boarding": [],
+      "school_location": [],
+      "school_name": [],
+      "status_text": [],
+      "student": [],
+      "student_number": [],
+      "university": []
+    },
+    "layout": "CRIMINAL_EDEVLET",
+    "pages": [
+      1
+    ],
+    "profile_version": "criminal-record-v2",
+    "recognized": true,
+    "recovered": false
+  },
+  "result": {
+    "archive_status": "NONE",
+    "criminal_record": {
+      "archive_text": "YUKARIDA KİMLİK BİLGİLERİ BULUNAN ŞAHSIN ADLİ SİCİL ARŞİV KAYDI YOKTUR.",
+      "criminal_text": "YUKARIDA KİMLİK BİLGİLERİ BULUNAN KİŞİNİN ADLİ SİCİL KAYDI YOKTUR.",
+      "identity_type": "MERNİS",
+      "issue_place": "İNTERNET (www.turkiye.gov.tr)",
+      "query_number": "0000-2026-1234567890",
+      "query_purpose": "Örnek kurum",
+      "query_time": "13:42",
+      "query_type": "DİĞER",
+      "registered_location": "Örnek İl"
+    },
+    "criminal_status": "NONE",
+    "document_family": "CRIMINAL_RECORD",
+    "document_metadata": {
+      "barcode": "ADB12345678901",
+      "issue_date": "2026-10-20",
+      "layout": "CRIMINAL_EDEVLET",
+      "source_format": "PDF"
+    },
+    "evidence": [
+      {
+        "bbox": [
+          40,
+          250,
+          550,
+          265
+        ],
+        "block_id": "b10",
+        "field": "identity",
+        "method": "OCR",
+        "page": 1
+      },
+      {
+        "bbox": [
+          40,
+          270,
+          550,
+          285
+        ],
+        "block_id": "b11",
+        "field": "name",
+        "method": "OCR",
+        "page": 1
+      },
+      {
+        "bbox": [
+          40,
+          290,
+          550,
+          305
+        ],
+        "block_id": "b12",
+        "field": "mother_name",
+        "method": "OCR",
+        "page": 1
+      },
+      {
+        "bbox": [
+          40,
+          290,
+          550,
+          305
+        ],
+        "block_id": "b12",
+        "field": "father_name",
+        "method": "OCR",
+        "page": 1
+      },
+      {
+        "bbox": [
+          40,
+          310,
+          550,
+          325
+        ],
+        "block_id": "b13",
+        "field": "birth_place",
+        "method": "OCR",
+        "page": 1
+      },
+      {
+        "bbox": [
+          40,
+          310,
+          550,
+          325
+        ],
+        "block_id": "b13",
+        "field": "birth_date",
+        "method": "OCR",
+        "page": 1
+      },
+      {
+        "bbox": [
+          40,
+          50,
+          550,
+          65
+        ],
+        "block_id": "b0",
+        "field": "barcode",
+        "method": "OCR",
+        "page": 1
+      },
+      {
+        "bbox": [
+          40,
+          150,
+          550,
+          165
+        ],
+        "block_id": "b5",
+        "field": "issue_date",
+        "method": "OCR",
+        "page": 1
+      },
+      {
+        "bbox": [
+          40,
+          370,
+          550,
+          385
+        ],
+        "block_id": "b16",
+        "field": "criminal",
+        "method": "OCR",
+        "page": 1
+      },
+      {
+        "bbox": [
+          40,
+          390,
+          550,
+          405
+        ],
+        "block_id": "b17",
+        "field": "archive",
+        "method": "OCR",
+        "page": 1
+      },
+      {
+        "bbox": [
+          40,
+          130,
+          550,
+          145
+        ],
+        "block_id": "b4",
+        "field": "query_number",
+        "method": "OCR",
+        "page": 1
+      },
+      {
+        "bbox": [
+          40,
+          130,
+          550,
+          145
+        ],
+        "block_id": "b4",
+        "field": "query_time",
+        "method": "OCR",
+        "page": 1
+      },
+      {
+        "bbox": [
+          40,
+          150,
+          550,
+          165
+        ],
+        "block_id": "b5",
+        "field": "issue_place",
+        "method": "OCR",
+        "page": 1
+      },
+      {
+        "bbox": [
+          40,
+          170,
+          550,
+          185
+        ],
+        "block_id": "b6",
+        "field": "query_type",
+        "method": "OCR",
+        "page": 1
+      },
+      {
+        "bbox": [
+          40,
+          190,
+          550,
+          205
+        ],
+        "block_id": "b7",
+        "field": "query_purpose",
+        "method": "OCR",
+        "page": 1
+      },
+      {
+        "bbox": [
+          40,
+          210,
+          550,
+          225
+        ],
+        "block_id": "b8",
+        "field": "identity_type",
+        "method": "OCR",
+        "page": 1
+      },
+      {
+        "bbox": [
+          40,
+          330,
+          550,
+          345
+        ],
+        "block_id": "b14",
+        "field": "registered_location",
+        "method": "OCR",
+        "page": 1
+      },
+      {
+        "bbox": [
+          40,
+          370,
+          550,
+          385
+        ],
+        "block_id": "b16",
+        "field": "criminal_text",
+        "method": "OCR",
+        "page": 1
+      },
+      {
+        "bbox": [
+          40,
+          390,
+          550,
+          405
+        ],
+        "block_id": "b17",
+        "field": "archive_text",
+        "method": "OCR",
+        "page": 1
+      }
+    ],
+    "field_states": {
+      "archive": "READABLE",
+      "archive_text": "READABLE",
+      "barcode": "READABLE",
+      "birth_date": "READABLE",
+      "birth_place": "READABLE",
+      "criminal": "READABLE",
+      "criminal_text": "READABLE",
+      "father_name": "READABLE",
+      "identity": "READABLE",
+      "identity_type": "READABLE",
+      "issue_date": "READABLE",
+      "issue_place": "READABLE",
+      "mother_name": "READABLE",
+      "name": "READABLE",
+      "query_number": "READABLE",
+      "query_purpose": "READABLE",
+      "query_time": "READABLE",
+      "query_type": "READABLE",
+      "registered_location": "READABLE"
+    },
+    "identity": {
+      "birth_date": "2000-04-03",
+      "birth_date_status": "READABLE",
+      "birth_place": "Örnek Yer/Ülke",
+      "birth_place_status": "READABLE",
+      "candidates": [
+        {
+          "evidence": {
+            "bbox": [
+              40,
+              250,
+              550,
+              265
+            ],
+            "block_id": "b10",
+            "method": "OCR",
+            "page": 1
+          },
+          "field": "identity",
+          "reliable": true,
+          "value": "10000000146"
+        },
+        {
+          "evidence": {
+            "bbox": [
+              40,
+              270,
+              550,
+              285
+            ],
+            "block_id": "b11",
+            "method": "OCR",
+            "page": 1
+          },
+          "field": "name",
+          "reliable": true,
+          "value": "Örnek İsim Soyisim"
+        },
+        {
+          "evidence": {
+            "bbox": [
+              40,
+              290,
+              550,
+              305
+            ],
+            "block_id": "b12",
+            "method": "OCR",
+            "page": 1
+          },
+          "field": "mother_name",
+          "reliable": true,
+          "value": "Örnek Anne"
+        },
+        {
+          "evidence": {
+            "bbox": [
+              40,
+              290,
+              550,
+              305
+            ],
+            "block_id": "b12",
+            "method": "OCR",
+            "page": 1
+          },
+          "field": "father_name",
+          "reliable": true,
+          "value": "Örnek Baba"
+        },
+        {
+          "evidence": {
+            "bbox": [
+              40,
+              310,
+              550,
+              325
+            ],
+            "block_id": "b13",
+            "method": "OCR",
+            "page": 1
+          },
+          "field": "birth_date",
+          "reliable": true,
+          "value": "2000-04-03"
+        },
+        {
+          "evidence": {
+            "bbox": [
+              40,
+              310,
+              550,
+              325
+            ],
+            "block_id": "b13",
+            "method": "OCR",
+            "page": 1
+          },
+          "field": "birth_place",
+          "reliable": true,
+          "value": "Örnek Yer/Ülke"
+        }
+      ],
+      "father_name": "Örnek Baba",
+      "father_name_status": "READABLE",
+      "full_name": "Örnek İsim Soyisim",
+      "mother_name": "Örnek Anne",
+      "mother_name_status": "READABLE",
+      "name_status": "READABLE",
+      "nationality": "",
+      "nationality_status": "UNKNOWN",
+      "tckn": "10000000146",
+      "tckn_status": "READABLE"
+    },
+    "identity_status": "READABLE",
+    "needs_ocr_pages": [],
+    "reason_codes": [],
+    "schema_version": 6,
+    "student": {
+      "class_level": "",
+      "department": "",
+      "education_branch": "",
+      "education_duration_years": null,
+      "education_field": "",
+      "education_type": "",
+      "faculty": "",
+      "program": "",
+      "registration_date": "",
+      "scholarship_boarding": "",
+      "school_location": "",
+      "school_name": "",
+      "status": "",
+      "status_text": "",
+      "student_number": "",
+      "university": ""
+    },
+    "student_status": "",
+    "warnings": []
+  }
+}

@@ -1,0 +1,49 @@
+# GPU inference tier imaji (SABLON): PaddleOCR (OCR) + faster-whisper/CTranslate2
+# (ASR). Sicak model VRAM'de kalir; bu worker'lar uzun-omurludur, sifira inmez.
+#
+# ONEMLI:
+#  - CUDA/cuDNN surumu kendi GPU + surucunuze gore dogrulanmali; asagidaki taban
+#    bir baslangic noktasidir.
+#  - Model agirliklari VENDOR'LANIR/MOUNT edilir; runtime'da indirme YOK
+#    (local-only kisit). ASR_MODEL_DIR + PADDLE_{DET,REC,CLS}_DIR env ile verilir.
+#  - paddlepaddle-gpu / ctranslate2 wheel'leri StrEnum (3.11+) ile uyumlu Python
+#    gerektirir; burada python3.11 kurulur.
+FROM nvidia/cuda:12.4.1-cudnn-runtime-ubuntu22.04
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=1 \
+    DEBIAN_FRONTEND=noninteractive \
+    OCR_ENGINE=gpu \
+    ASR_DEVICE=cuda
+
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends \
+      software-properties-common \
+ && add-apt-repository -y ppa:deadsnakes/ppa \
+ && apt-get update \
+ && apt-get install -y --no-install-recommends \
+      python3.11 python3.11-venv python3.11-distutils \
+      ffmpeg tesseract-ocr tesseract-ocr-tur curl \
+ && rm -rf /var/lib/apt/lists/* \
+ && curl -sS https://bootstrap.pypa.io/get-pip.py | python3.11
+
+WORKDIR /app
+
+COPY requirements.txt requirements-server.txt ./
+# Cekirdek + server dikisleri, ardindan GPU motorlari. GPU wheel surumleri CUDA
+# tabaniyla uyumlu secilmelidir (asagidakiler sablondur).
+RUN python3.11 -m pip install --upgrade pip \
+ && python3.11 -m pip install -r requirements.txt -r requirements-server.txt \
+ && python3.11 -m pip install \
+      "faster-whisper>=1.0,<2" \
+      "paddlepaddle-gpu" \
+      "paddleocr>=2.7,<3"
+
+COPY . .
+RUN chmod +x docker/entrypoint.sh
+
+EXPOSE 8000
+ENTRYPOINT ["/app/docker/entrypoint.sh"]
+# GPU tier'i worker rolunde kosar (OCR/ASR asamalarini isler).
+CMD ["worker"]

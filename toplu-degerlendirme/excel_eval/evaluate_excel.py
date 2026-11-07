@@ -43,7 +43,21 @@ DEFAULT_EXCEL = "FPV Eğitmen Eğitimi Başvuru -Yapay Zeka Değerlendirmesi.xls
 DEFAULT_OUT = "Değerlendirme Sonuçları.xlsx"
 DEFAULT_CRITERIA_SHEET = "Kriterler"
 DEFAULT_APPLICATIONS_SHEET = "Başvurular"
-MAX_ANSWER_CHARS = 6000
+
+# Bu rubrige ozel netlestirme kurallari. Excel'e dokunmadan prompt'un
+# "EK KURALLAR" bolumune eklenir; kategori sinirlarini sikilastirir.
+EXTRA_RULES = [
+    "Eğitmenlik puanı yalnızca alanı tam eşleşiyorsa en yüksek bandı alır: "
+    "30 puan SADECE FPV dron eğitmenliğinde verilir. Normal dron/İHA "
+    "eğitmenliği 20 puandır. Elektronik, yazılım, STEM, robotik, kodlama veya "
+    "genel öğretmenlik/akademik deneyim en fazla 10 puandır; bunlar FPV veya "
+    "dron eğitmenliği sayılmaz ve 20 ya da 30 puan alamaz.",
+    "Dron kullanımı sorusunda 10 puan SADECE FPV dronu için verilir. "
+    "Fotoğraf/Video dronu veya Diğer İHA/dron türleri 5 puandır. Hiç dron "
+    "kullanmadığını belirten aday 0 puan alır.",
+    "Deneyimi bir banda tam oturmuyorsa düşük olan bandı seç; emin değilsen "
+    "bir alt puanı ver.",
+]
 
 
 @dataclass
@@ -99,7 +113,7 @@ def read_applicants(path: Path, sheet: str, n_questions: int) -> list[Applicant]
             if not applicant_id and not name:
                 continue
             answers = [
-                _str(cells[2 + j] if len(cells) > 2 + j else "")[:MAX_ANSWER_CHARS]
+                _str(cells[2 + j] if len(cells) > 2 + j else "")
                 for j in range(n_questions)
             ]
             applicants.append(Applicant(i, applicant_id or f"row-{i}", name, answers))
@@ -146,9 +160,11 @@ def evaluate_one(
     poll_interval: float,
     job_timeout: float,
 ) -> Evaluation:
-    messages = build_messages(questions, applicant.answers, notes, applicant_name=applicant.name)
+    messages = build_messages(
+        questions, applicant.answers, notes, applicant_name=applicant.name
+    )
     generation = {"temperature": 0.0, "maxOutputTokens": 1024}
-    idem = f"excel-eval:{applicant.applicant_id}"
+    idem = f"excel-eval:v4:{applicant.applicant_id}"
 
     job_id = client.create_job(
         messages=messages,
@@ -229,7 +245,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     p.add_argument("--base-url", default=os.getenv("AI_PLATFORM_BASE_URL", "http://localhost:8080"))
     p.add_argument("--api-key", default=os.getenv("AI_PLATFORM_API_KEY", ""))
     p.add_argument("--limit", type=int, default=0, help="Yalnizca ilk N basvuru (0=tumu)")
-    p.add_argument("--concurrency", type=int, default=16, help="Es zamanli is sayisi")
+    p.add_argument("--concurrency", type=int, default=2, help="Es zamanli is sayisi")
     p.add_argument("--poll-interval", type=float, default=2.0)
     p.add_argument("--job-timeout", type=float, default=1800.0)
     p.add_argument("--checkpoint", default=None, help="Checkpoint JSONL yolu")
@@ -263,6 +279,7 @@ def main(argv: list[str] | None = None) -> int:
         return 2
 
     questions, notes = read_criteria(excel_path, args.criteria_sheet)
+    notes = notes + EXTRA_RULES
     response_schema = build_response_schema(questions)
     applicants = read_applicants(excel_path, args.applications_sheet, len(questions))
 

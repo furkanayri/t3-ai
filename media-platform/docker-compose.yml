@@ -1,0 +1,96 @@
+# Dev/tek-dugum dagitim: API (+ surec-ici worker) + Postgres (durum) + Redis
+# (ephemeral). Dijital-PDF yolu uctan uca calisir; medya/GPU icin Dockerfile.gpu
+# ile ayri bir worker servisi eklenir ve vendor'lanmis modeller mount edilir.
+#
+# Not: Dispatch bu modda surec-icidir (in-memory). Cok-konteynerli worker
+# olceklemesi RabbitMQ consumer dongusu devreye alininca eklenir; o zamana kadar
+# API konteyneri RUN_INPROC_WORKER=1 ile hem API hem worker rolunu ustlenir.
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: ["api"]
+    environment:
+      RUN_INPROC_WORKER: "1"
+      DATABASE_URL: postgresql+psycopg://media:media@postgres:5432/media
+      EPHEMERAL_REDIS_URL: redis://redis:6379/0
+      # Prod'da gercek dosyalar mount edilir; dev'de bootstrap .instance uretir.
+      # KEYRING_FILE: /run/secrets/keyring.json
+      # SERVICE_TOKENS_FILE: /run/secrets/tokens.json
+      # Vendor'lanmis OCR/ASR modelleri (yalniz GPU worker'da gereklidir):
+      # ASR_MODEL_DIR: /models/asr
+      # PADDLE_DET_DIR: /models/ocr/det
+      # PADDLE_REC_DIR: /models/ocr/rec
+      # PADDLE_CLS_DIR: /models/ocr/cls
+    ports:
+      - "8000:8000"
+    volumes:
+      - instance:/app/.instance        # dev keyring/token (prod: secret manager)
+      # - ./models:/models:ro          # vendor'lanmis model agirliklari
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: media
+      POSTGRES_PASSWORD: media
+      POSTGRES_DB: media
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U media"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    command: ["redis-server", "--maxmemory", "512mb", "--maxmemory-policy", "allkeys-lru"]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  # --- Ileride: broker + buyuk-medya object store devreye alininca ---
+  # rabbitmq:
+  #   image: rabbitmq:3-management-alpine
+  #   ports: ["5672:5672", "15672:15672"]
+  # minio:
+  #   image: minio/minio
+  #   command: server /data --console-address ":9001"
+  #   ports: ["9000:9000", "9001:9001"]
+
+  # --- Ileride: GPU inference tier (OCR + ASR) ---
+  # gpu-worker:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile.gpu
+  #   command: ["worker"]
+  #   environment:
+  #     DATABASE_URL: postgresql+psycopg://media:media@postgres:5432/media
+  #     EPHEMERAL_REDIS_URL: redis://redis:6379/0
+  #     OCR_ENGINE: gpu
+  #     ASR_MODEL_DIR: /models/asr
+  #     PADDLE_DET_DIR: /models/ocr/det
+  #     PADDLE_REC_DIR: /models/ocr/rec
+  #     PADDLE_CLS_DIR: /models/ocr/cls
+  #   volumes:
+  #     - ./models:/models:ro
+  #   deploy:
+  #     resources:
+  #       reservations:
+  #         devices:
+  #           - driver: nvidia
+  #             count: 1
+  #             capabilities: [gpu]
+
+volumes:
+  pgdata:
+  instance:

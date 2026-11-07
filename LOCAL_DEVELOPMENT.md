@@ -1,4 +1,4 @@
-# Heplin Local Development
+# T3 Vakfı Mülakat Sistemi Local Development
 
 This setup runs MongoDB and Redis in Docker while the Node.js applications run
 on the host with hot reload. It never uses the existing remote MongoDB URL from
@@ -46,14 +46,14 @@ Frontend terminal:
 
 ```powershell
 cd frontend
-npm run dev:all
+npm run dev
 ```
 
-Local URLs:
+Local URLs, all on port 5173:
 
 - Company: http://localhost:5173
-- Accounts: http://localhost:5174
-- Admin: http://localhost:5175
+- Accounts: http://localhost:5173/hesap
+- Admin: http://localhost:5173/admin
 - Backend health: http://localhost:3000/healthyCheck
 
 ## Demo accounts
@@ -87,7 +87,7 @@ npm run assign-interview:local
 ```
 
 Then sign in to the Accounts panel with `candidate@heplin.local`, open
-`http://localhost:5174/interviews`, and select **Yerel Video Mülakat Testi**.
+`http://localhost:5173/hesap/interviews`, and select **Yerel Video Mülakat Testi**.
 The assignment command is idempotent and extends the expiration date without
 duplicating the interview.
 

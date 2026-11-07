@@ -1,0 +1,13 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.egg-info/
+.venv/
+
+# Runtime dev secrets (keyring + servis/tenant token'lari) — repoya girmez
+.instance/
+
+# Vendor'lanan OCR model agirliklari + accuracy rapor artefakti
+.ocr-models/
+tests/ocr_accuracy/report.json

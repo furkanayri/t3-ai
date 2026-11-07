@@ -151,7 +151,13 @@ function parseProm(text){
   }
   return out;
 }
-const sum = (s,n) => (s[n]||[]).reduce((a,x)=>a+(isFinite(x.value)?x.value:0),0);
+// Saglik ve dashboard'un kendi istekleri is trafigi degil; kart, grafik ve tabloya girmez.
+const INTERNAL_PATHS = new Set(["/health/live","/health/ready","/metrics","/metrics/all","/dashboard"]);
+function visible(x){
+  const p = x.labels && x.labels.path;
+  return !p || !INTERNAL_PATHS.has(p);
+}
+const sum = (s,n) => (s[n]||[]).filter(visible).reduce((a,x)=>a+(isFinite(x.value)?x.value:0),0);
 function gauge(s,n,match){
   const arr = s[n]||[];
   for(const x of arr){
@@ -163,7 +169,7 @@ function gauge(s,n,match){
 }
 /* Etiketli histogram'da tüm le kovalarını toplayıp global yüzdelik hesapla */
 function histQuantile(s, base, q){
-  const buckets = s[base+"_bucket"]; if(!buckets||!buckets.length) return null;
+  const buckets = (s[base+"_bucket"]||[]).filter(visible); if(!buckets.length) return null;
   const agg = {};
   for(const b of buckets){ const le=b.labels.le; agg[le]=(agg[le]||0)+b.value; }
   const arr = Object.keys(agg).map(le=>({le: le==="+Inf"?Infinity:parseFloat(le), c:agg[le]}))
@@ -339,6 +345,7 @@ function update(s){
   // API tablosu
   const rows = {};
   for(const x of (s["api_requests_total"]||[])){
+    if(!visible(x)) continue;
     const k = (x.labels.method||"")+"|"+(x.labels.path||"")+"|"+(x.labels.status||"");
     rows[k] = {m:x.labels.method, p:x.labels.path, st:x.labels.status, v:x.value};
   }

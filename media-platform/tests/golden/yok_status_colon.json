@@ -1,0 +1,758 @@
+{
+  "findings": {
+    "absent_fields": [],
+    "barcodes": [
+      "ABCDEF1234567890"
+    ],
+    "detected_types": [
+      "STUDENT"
+    ],
+    "document_family": "YOK",
+    "expected_fields": [
+      "identity",
+      "name",
+      "mother_name",
+      "father_name",
+      "birth_date",
+      "nationality",
+      "university",
+      "faculty",
+      "program",
+      "registration_date",
+      "education_type",
+      "education_duration",
+      "student",
+      "class_level",
+      "barcode",
+      "issue_date"
+    ],
+    "fields": {
+      "archive": [],
+      "archive_text": [],
+      "barcode": [
+        {
+          "evidence": {
+            "bbox": [
+              350,
+              10,
+              520,
+              25
+            ],
+            "block_id": "b1",
+            "method": "PDF_TEXT",
+            "page": 1
+          },
+          "reliable": true,
+          "value": "ABCDEF1234567890"
+        }
+      ],
+      "birth_date": [
+        {
+          "evidence": {
+            "bbox": [
+              40,
+              190,
+              550,
+              205
+            ],
+            "block_id": "b7",
+            "method": "PDF_TEXT",
+            "page": 1
+          },
+          "reliable": true,
+          "value": "2000-04-03"
+        }
+      ],
+      "birth_place": [],
+      "class_level": [
+        {
+          "evidence": {
+            "bbox": [
+              40,
+              270,
+              550,
+              285
+            ],
+            "block_id": "b11",
+            "method": "PDF_TEXT",
+            "page": 1
+          },
+          "reliable": true,
+          "value": "4. SINIF"
+        }
+      ],
+      "criminal": [],
+      "criminal_text": [],
+      "department": [
+        {
+          "evidence": {
+            "bbox": [
+              40,
+              290,
+              550,
+              325
+            ],
+            "block_id": "b12",
+            "method": "PDF_TEXT",
+            "page": 1
+          },
+          "reliable": true,
+          "value": "BİLGİSAYAR MÜHENDİSLİĞİ BÖLÜMÜ"
+        }
+      ],
+      "education_branch": [],
+      "education_duration": [
+        {
+          "evidence": {
+            "bbox": [
+              40,
+              230,
+              550,
+              245
+            ],
+            "block_id": "b9",
+            "method": "PDF_TEXT",
+            "page": 1
+          },
+          "reliable": true,
+          "value": "4"
+        }
+      ],
+      "education_field": [],
+      "education_type": [
+        {
+          "evidence": {
+            "bbox": [
+              40,
+              230,
+              550,
+              245
+            ],
+            "block_id": "b9",
+            "method": "PDF_TEXT",
+            "page": 1
+          },
+          "reliable": true,
+          "value": "ÖRGÜN ÖĞRETİM"
+        }
+      ],
+      "faculty": [
+        {
+          "evidence": {
+            "bbox": [
+              40,
+              290,
+              550,
+              325
+            ],
+            "block_id": "b12",
+            "method": "PDF_TEXT",
+            "page": 1
+          },
+          "reliable": true,
+          "value": "MÜHENDİSLİK FAKÜLTESİ"
+        }
+      ],
+      "father_name": [
+        {
+          "evidence": {
+            "bbox": [
+              40,
+              170,
+              550,
+              185
+            ],
+            "block_id": "b6",
+            "method": "PDF_TEXT",
+            "page": 1
+          },
+          "reliable": true,
+          "value": "Örnek Baba"
+        }
+      ],
+      "identity": [
+        {
+          "evidence": {
+            "bbox": [
+              40,
+              110,
+              550,
+              125
+            ],
+            "block_id": "b3",
+            "method": "PDF_TEXT",
+            "page": 1
+          },
+          "reliable": true,
+          "value": "10000000146"
+        }
+      ],
+      "identity_type": [],
+      "issue_date": [
+        {
+          "evidence": {
+            "bbox": [
+              350,
+              30,
+              460,
+              45
+            ],
+            "block_id": "b2",
+            "method": "PDF_TEXT",
+            "page": 1
+          },
+          "reliable": true,
+          "value": "2024-01-02"
+        }
+      ],
+      "issue_place": [],
+      "mother_name": [
+        {
+          "evidence": {
+            "bbox": [
+              40,
+              150,
+              550,
+              165
+            ],
+            "block_id": "b5",
+            "method": "PDF_TEXT",
+            "page": 1
+          },
+          "reliable": true,
+          "value": "Örnek Anne"
+        }
+      ],
+      "name": [
+        {
+          "evidence": {
+            "bbox": [
+              40,
+              130,
+              550,
+              145
+            ],
+            "block_id": "b4",
+            "method": "PDF_TEXT",
+            "page": 1
+          },
+          "reliable": true,
+          "value": "Örnek Öğrenci"
+        }
+      ],
+      "nationality": [
+        {
+          "evidence": {
+            "bbox": [
+              40,
+              190,
+              550,
+              205
+            ],
+            "block_id": "b7",
+            "method": "PDF_TEXT",
+            "page": 1
+          },
+          "reliable": true,
+          "value": "TÜRKİYE CUMHURİYETİ"
+        }
+      ],
+      "program": [
+        {
+          "evidence": {
+            "bbox": [
+              40,
+              290,
+              550,
+              325
+            ],
+            "block_id": "b12",
+            "method": "PDF_TEXT",
+            "page": 1
+          },
+          "reliable": true,
+          "value": "BİLGİSAYAR MÜHENDİSLİĞİ PR"
+        }
+      ],
+      "query_number": [],
+      "query_purpose": [],
+      "query_time": [],
+      "query_type": [],
+      "registered_location": [],
+      "registration_date": [
+        {
+          "evidence": {
+            "bbox": [
+              40,
+              210,
+              550,
+              225
+            ],
+            "block_id": "b8",
+            "method": "PDF_TEXT",
+            "page": 1
+          },
+          "reliable": true,
+          "value": "2020-09-05"
+        }
+      ],
+      "scholarship_boarding": [],
+      "school_location": [],
+      "school_name": [],
+      "status_text": [
+        {
+          "evidence": {
+            "bbox": [
+              40,
+              250,
+              550,
+              265
+            ],
+            "block_id": "b10",
+            "method": "PDF_TEXT",
+            "page": 1
+          },
+          "reliable": true,
+          "value": "AKTİF ÖĞRENCİ"
+        }
+      ],
+      "student": [
+        {
+          "evidence": {
+            "bbox": [
+              40,
+              250,
+              550,
+              265
+            ],
+            "block_id": "b10",
+            "method": "PDF_TEXT",
+            "page": 1
+          },
+          "reliable": true,
+          "value": "ACTIVE"
+        }
+      ],
+      "student_number": [],
+      "university": [
+        {
+          "evidence": {
+            "bbox": [
+              40,
+              290,
+              550,
+              325
+            ],
+            "block_id": "b12",
+            "method": "PDF_TEXT",
+            "page": 1
+          },
+          "reliable": true,
+          "value": "ÖRNEK ÜNİVERSİTESİ"
+        }
+      ]
+    },
+    "layout": "YOK_EDEVLET",
+    "pages": [
+      1
+    ],
+    "profile_version": "student-documents-v5",
+    "recognized": true,
+    "recovered": false
+  },
+  "result": {
+    "archive_status": "",
+    "criminal_status": "",
+    "document_family": "YOK",
+    "document_metadata": {
+      "barcode": "ABCDEF1234567890",
+      "issue_date": "2024-01-02",
+      "layout": "YOK_EDEVLET",
+      "source_format": "PDF",
+      "subtype": "ENROLLMENT"
+    },
+    "evidence": [
+      {
+        "bbox": [
+          40,
+          110,
+          550,
+          125
+        ],
+        "block_id": "b3",
+        "field": "identity",
+        "method": "PDF_TEXT",
+        "page": 1
+      },
+      {
+        "bbox": [
+          40,
+          130,
+          550,
+          145
+        ],
+        "block_id": "b4",
+        "field": "name",
+        "method": "PDF_TEXT",
+        "page": 1
+      },
+      {
+        "bbox": [
+          40,
+          150,
+          550,
+          165
+        ],
+        "block_id": "b5",
+        "field": "mother_name",
+        "method": "PDF_TEXT",
+        "page": 1
+      },
+      {
+        "bbox": [
+          40,
+          170,
+          550,
+          185
+        ],
+        "block_id": "b6",
+        "field": "father_name",
+        "method": "PDF_TEXT",
+        "page": 1
+      },
+      {
+        "bbox": [
+          40,
+          190,
+          550,
+          205
+        ],
+        "block_id": "b7",
+        "field": "birth_date",
+        "method": "PDF_TEXT",
+        "page": 1
+      },
+      {
+        "bbox": [
+          40,
+          190,
+          550,
+          205
+        ],
+        "block_id": "b7",
+        "field": "nationality",
+        "method": "PDF_TEXT",
+        "page": 1
+      },
+      {
+        "bbox": [
+          40,
+          290,
+          550,
+          325
+        ],
+        "block_id": "b12",
+        "field": "university",
+        "method": "PDF_TEXT",
+        "page": 1
+      },
+      {
+        "bbox": [
+          40,
+          290,
+          550,
+          325
+        ],
+        "block_id": "b12",
+        "field": "faculty",
+        "method": "PDF_TEXT",
+        "page": 1
+      },
+      {
+        "bbox": [
+          40,
+          290,
+          550,
+          325
+        ],
+        "block_id": "b12",
+        "field": "department",
+        "method": "PDF_TEXT",
+        "page": 1
+      },
+      {
+        "bbox": [
+          40,
+          290,
+          550,
+          325
+        ],
+        "block_id": "b12",
+        "field": "program",
+        "method": "PDF_TEXT",
+        "page": 1
+      },
+      {
+        "bbox": [
+          40,
+          210,
+          550,
+          225
+        ],
+        "block_id": "b8",
+        "field": "registration_date",
+        "method": "PDF_TEXT",
+        "page": 1
+      },
+      {
+        "bbox": [
+          40,
+          230,
+          550,
+          245
+        ],
+        "block_id": "b9",
+        "field": "education_type",
+        "method": "PDF_TEXT",
+        "page": 1
+      },
+      {
+        "bbox": [
+          40,
+          230,
+          550,
+          245
+        ],
+        "block_id": "b9",
+        "field": "education_duration",
+        "method": "PDF_TEXT",
+        "page": 1
+      },
+      {
+        "bbox": [
+          40,
+          250,
+          550,
+          265
+        ],
+        "block_id": "b10",
+        "field": "student",
+        "method": "PDF_TEXT",
+        "page": 1
+      },
+      {
+        "bbox": [
+          40,
+          250,
+          550,
+          265
+        ],
+        "block_id": "b10",
+        "field": "status_text",
+        "method": "PDF_TEXT",
+        "page": 1
+      },
+      {
+        "bbox": [
+          40,
+          270,
+          550,
+          285
+        ],
+        "block_id": "b11",
+        "field": "class_level",
+        "method": "PDF_TEXT",
+        "page": 1
+      },
+      {
+        "bbox": [
+          350,
+          10,
+          520,
+          25
+        ],
+        "block_id": "b1",
+        "field": "barcode",
+        "method": "PDF_TEXT",
+        "page": 1
+      },
+      {
+        "bbox": [
+          350,
+          30,
+          460,
+          45
+        ],
+        "block_id": "b2",
+        "field": "issue_date",
+        "method": "PDF_TEXT",
+        "page": 1
+      }
+    ],
+    "field_states": {
+      "barcode": "READABLE",
+      "birth_date": "READABLE",
+      "birth_place": "NOT_PRESENT",
+      "class_level": "READABLE",
+      "department": "READABLE",
+      "education_branch": "NOT_PRESENT",
+      "education_duration": "READABLE",
+      "education_field": "NOT_PRESENT",
+      "education_type": "READABLE",
+      "faculty": "READABLE",
+      "father_name": "READABLE",
+      "identity": "READABLE",
+      "issue_date": "READABLE",
+      "mother_name": "READABLE",
+      "name": "READABLE",
+      "nationality": "READABLE",
+      "program": "READABLE",
+      "registration_date": "READABLE",
+      "scholarship_boarding": "NOT_PRESENT",
+      "school_location": "NOT_PRESENT",
+      "school_name": "NOT_PRESENT",
+      "status_text": "READABLE",
+      "student": "READABLE",
+      "student_number": "NOT_PRESENT",
+      "university": "READABLE"
+    },
+    "identity": {
+      "birth_date": "2000-04-03",
+      "birth_date_status": "READABLE",
+      "birth_place": "",
+      "birth_place_status": "UNKNOWN",
+      "candidates": [
+        {
+          "evidence": {
+            "bbox": [
+              40,
+              110,
+              550,
+              125
+            ],
+            "block_id": "b3",
+            "method": "PDF_TEXT",
+            "page": 1
+          },
+          "field": "identity",
+          "reliable": true,
+          "value": "10000000146"
+        },
+        {
+          "evidence": {
+            "bbox": [
+              40,
+              130,
+              550,
+              145
+            ],
+            "block_id": "b4",
+            "method": "PDF_TEXT",
+            "page": 1
+          },
+          "field": "name",
+          "reliable": true,
+          "value": "Örnek Öğrenci"
+        },
+        {
+          "evidence": {
+            "bbox": [
+              40,
+              150,
+              550,
+              165
+            ],
+            "block_id": "b5",
+            "method": "PDF_TEXT",
+            "page": 1
+          },
+          "field": "mother_name",
+          "reliable": true,
+          "value": "Örnek Anne"
+        },
+        {
+          "evidence": {
+            "bbox": [
+              40,
+              170,
+              550,
+              185
+            ],
+            "block_id": "b6",
+            "method": "PDF_TEXT",
+            "page": 1
+          },
+          "field": "father_name",
+          "reliable": true,
+          "value": "Örnek Baba"
+        },
+        {
+          "evidence": {
+            "bbox": [
+              40,
+              190,
+              550,
+              205
+            ],
+            "block_id": "b7",
+            "method": "PDF_TEXT",
+            "page": 1
+          },
+          "field": "birth_date",
+          "reliable": true,
+          "value": "2000-04-03"
+        },
+        {
+          "evidence": {
+            "bbox": [
+              40,
+              190,
+              550,
+              205
+            ],
+            "block_id": "b7",
+            "method": "PDF_TEXT",
+            "page": 1
+          },
+          "field": "nationality",
+          "reliable": true,
+          "value": "TÜRKİYE CUMHURİYETİ"
+        }
+      ],
+      "father_name": "Örnek Baba",
+      "father_name_status": "READABLE",
+      "full_name": "Örnek Öğrenci",
+      "mother_name": "Örnek Anne",
+      "mother_name_status": "READABLE",
+      "name_status": "READABLE",
+      "nationality": "TÜRKİYE CUMHURİYETİ",
+      "nationality_status": "READABLE",
+      "tckn": "10000000146",
+      "tckn_status": "READABLE"
+    },
+    "identity_status": "READABLE",
+    "needs_ocr_pages": [],
+    "reason_codes": [],
+    "schema_version": 7,
+    "student": {
+      "class_level": "4. SINIF",
+      "department": "BİLGİSAYAR MÜHENDİSLİĞİ BÖLÜMÜ",
+      "education_branch": "",
+      "education_duration_years": 4,
+      "education_field": "",
+      "education_type": "ÖRGÜN ÖĞRETİM",
+      "faculty": "MÜHENDİSLİK FAKÜLTESİ",
+      "program": "BİLGİSAYAR MÜHENDİSLİĞİ PR",
+      "registration_date": "2020-09-05",
+      "scholarship_boarding": "",
+      "school_location": "",
+      "school_name": "",
+      "status": "ACTIVE",
+      "status_text": "AKTİF ÖĞRENCİ",
+      "student_number": "",
+      "university": "ÖRNEK ÜNİVERSİTESİ"
+    },
+    "student_status": "ACTIVE",
+    "warnings": []
+  }
+}

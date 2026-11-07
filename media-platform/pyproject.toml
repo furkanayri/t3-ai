@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "media-platform"
+version = "0.1.0"
+description = "Kurumsal medya-to-metin platformu (Faz 1: engine katmani)"
+requires-python = ">=3.12"
+
+[tool.pytest.ini_options]
+pythonpath = [".", "sdk/python"]
+markers = [
+  "django_db: Django-DB entegrasyon testleri (sonraki faz; Faz 1'de atlanir)",
+  "gpu_ocr: gercek PaddleOCR + vendor'lanmis model gerektiren testler",
+]

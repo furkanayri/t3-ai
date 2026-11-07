@@ -46,7 +46,7 @@ services:
       - "host.docker.internal:host-gateway"
     gpus: all
     volumes:
-      - ../heplin/backend/.local-uploads:/videos-source:ro
+      - ../t3-mulakat-platform/backend/.local-uploads:/videos-source:ro
       - worker_videos:/app/videos
       - ollama_cache:/root/.ollama
       - whisper_cache:/root/.cache/huggingface
@@ -97,7 +97,7 @@ services:
         condition: service_healthy
     gpus: all
     volumes:
-      - ${COMPARE_SOURCE_DIR:-../heplin/backend/.local-uploads}:/videos-source:ro
+      - ${COMPARE_SOURCE_DIR:-../t3-mulakat-platform/backend/.local-uploads}:/videos-source:ro
       - ./.local-runs:/app/.local-runs
       - worker_videos:/app/videos
       - ollama_cache:/root/.ollama

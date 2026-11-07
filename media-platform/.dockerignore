@@ -1,0 +1,25 @@
+# Sanal ortam + derleme artefaktlari
+.venv/
+**/__pycache__/
+*.pyc
+.pytest_cache/
+
+# Dev sirlari (konteynere girmez; prod'da secret manager / mount)
+.instance/
+
+# Vendor'lanmis model agirliklari (imaja gommek yerine volume ile mount edilir)
+.ocr-models/
+models/
+
+# VCS + IDE
+.git/
+.gitignore
+.idea/
+.vscode/
+
+# TS SDK derleme ciktilari
+sdk/typescript/node_modules/
+sdk/typescript/dist/
+
+# Plan/dokuman
+*.md

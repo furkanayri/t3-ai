@@ -21,7 +21,7 @@ değerlendirip sonuçları yeni bir Excel dosyasına yazar.
 ## Kurulum
 
 ```powershell
-cd C:\Users\T3Bilisim\t3-heplin\t3-heplin\toplu-degerlendirme
+cd C:\Users\frkna\PycharmProjects\t3-ai\toplu-degerlendirme
 pip install -r excel_eval\requirements.txt
 ```
 
@@ -47,10 +47,10 @@ $env:AI_PLATFORM_BASE_URL = "http://localhost:8080"   # varsayilan
 ## Çalıştırma
 
 ```powershell
-cd C:\Users\T3Bilisim\t3-heplin\t3-heplin\toplu-degerlendirme
+cd C:\Users\frkna\PycharmProjects\t3-ai\toplu-degerlendirme
 
-# Önce küçük bir doğrulama turu (ilk 10 başvuru):
-python -m excel_eval.evaluate_excel --limit 10
+# Önce küçük bir doğrulama turu (ilk 5 başvuru):
+python -m excel_eval.evaluate_excel --limit 5
 
 # Tüm başvurular:
 python -m excel_eval.evaluate_excel
@@ -63,7 +63,7 @@ python -m excel_eval.evaluate_excel
 | `--excel` | repo kökündeki Excel | Girdi dosyası |
 | `--out` | `Değerlendirme Sonuçları.xlsx` | Çıktı dosyası |
 | `--limit N` | `0` (tümü) | Yalnızca ilk N başvuru |
-| `--concurrency N` | `16` | Eş zamanlı iş sayısı (ai-platform backpressure limitlerinin altında) |
+| `--concurrency N` | `2` | Eş zamanlı iş sayısı. Bu makinede Ollama ve worker da 2 paralel çalışır. |
 | `--poll-interval` | `2.0` sn | İş durumu sorgulama aralığı |
 | `--job-timeout` | `1800` sn | Tek iş için üst bekleme süresi |
 | `--checkpoint` | çıktı yanında `.checkpoint.jsonl` | İlerleme kaydı |
@@ -72,12 +72,12 @@ python -m excel_eval.evaluate_excel
 
 Her tamamlanan değerlendirme `.checkpoint.jsonl` dosyasına yazılır. Komut
 yeniden çalıştırıldığında başarıyla (`OK`) tamamlanan başvurular atlanır, böylece
-kesilen bir koşu kaldığı yerden devam eder. `Idempotency-Key = excel-eval:<id>`
+kesilen bir koşu kaldığı yerden devam eder. `Idempotency-Key = excel-eval:v2:<id>`
 olduğundan aynı başvuru için ai-platform'da mükerrer iş oluşmaz.
 
 ## Ölçek notu
 
-ai-platform tek GPU worker ile aynı anda tek çıkarım yapar; çağrı başına birkaç
-saniye sürer. Binlerce başvuruda tam tur uzun sürebilir — önce `--limit` ile
-doğrulayın, ardından tam turu başlatın. Koşu kesilse de checkpoint sayesinde
-devam edilebilir.
+Ollama bu makinede aynı anda 2 istek işler (`OLLAMA_NUM_PARALLEL=2`). Binlerce
+başvuruda tam tur saatler sürebilir — önce `--limit` ile doğrulayın, ardından
+tam turu başlatın. Koşu kesilse de checkpoint sayesinde devam edilebilir.
+Cevaplar kısaltılmaz; Excel’deki metin olduğu gibi gönderilir.

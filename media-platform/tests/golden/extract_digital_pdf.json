@@ -1,0 +1,16 @@
+{
+  "method": "PDF_TEXT",
+  "page_count": 1,
+  "processed_pages": [
+    1
+  ],
+  "recovered": false,
+  "texts": [
+    "SENTETIK TEST BELGESI",
+    "YUKSEKOGRETIM KURULU",
+    "OGRENCI BELGESI",
+    "T.C. KIMLIK NO: 10000000146",
+    "ADI SOYADI: Sentetik Kisi",
+    "OGRENCI DURUMU: AKTIF"
+  ]
+}
